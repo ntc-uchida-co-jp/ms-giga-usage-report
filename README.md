@@ -1,7 +1,8 @@
 <a name="top"></a>
 <div align="right">
-  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/Microsoft365_logo_horiz_c-gray_rgb.png" alt="Image 1" width="200">
-  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/WIN22_Windows11_logo_horiz_blue_cmyk.png" alt="Image 2" width="200">
+  GIGA スクールソリューション powerd by
+  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/Microsoft365_logo_horiz_c-gray_rgb.png" width="150">
+  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/WIN22_Windows11_logo_horiz_blue_cmyk.png" width="150">
 </div>
 
 # Microsoft GIGAスクールパッケージ 利用状況可視化テンプレート
