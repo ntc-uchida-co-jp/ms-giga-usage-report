@@ -109,7 +109,7 @@ graph BT
     linkStyle 5 stroke:#565656, stroke-width:1.5px;
 ```
 
-**【レポート画面】
+**【レポート画面】**
 |<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="600">|
 |---------|
 
