@@ -1,5 +1,8 @@
 <a name="top"></a>
 
+<img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/sato_update_readme_241202/images/Microsoft365_logo_horiz_c-gray_rgb.png" width="250">
+<img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/sato_update_readme_241202/images/WIN22_Windows11_logo_horiz_blue_cmyk.png" width="250">
+
 # Microsoft GIGAスクールパッケージ 利用状況可視化テンプレート
 
 Microsoft GIGAスクールパッケージ導入後の端末におけるMicrosoft 365の利用状況を可視化するためのワークフローとレポートを実装したサンプルです。
