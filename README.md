@@ -1,9 +1,11 @@
 <a name="top"></a>
 <div align="right">
   GIGA スクールソリューション powerd by
-  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/Microsoft365_logo_horiz_c-gray_rgb.png" width="150">
-  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/WIN22_Windows11_logo_horiz_blue_cmyk.png" width="150">
+  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/fix_readme_241202/images/Microsoft365_logo_horiz_c-gray_rgb2.png" width="100">
+  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/fix_readme_241202/images/WIN22_Windows11_logo_horiz_blue_cmyk2.png" width="100">
 </div>
+<!--   <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/Microsoft365_logo_horiz_c-gray_rgb.png" width="150">  -->
+<!--   <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/main/images/WIN22_Windows11_logo_horiz_blue_cmyk.png" width="150"> --> -->
 
 # Microsoft GIGAスクールパッケージ 利用状況可視化テンプレート
 
