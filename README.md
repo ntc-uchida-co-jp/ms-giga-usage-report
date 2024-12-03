@@ -1,23 +1,10 @@
 <a name="top"></a>
 <div align="right">
   <span style="margin: 0 10px;">GIGAスクールソリューション powered by</span>
-  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb3.png" width="100">
+  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb.png" width="100">
   <font size="20 "face="Arial"> & </font>
-  <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk3.png" width="100">
+  <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk.png" width="100">
 </div>
-
-<br>
-
-<p align="right">
-  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb3.png" width="100" height="20"> & <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk3.png" width="100" height="20">
-</p>
-<p align="right">
-  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb3.png" width="100"> & <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk3.png" width="100">
-</p>
-<p align="right">
-  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb4.png" width="100" height="20"> & <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk4.png" width="100" height="20">
-</p>
-
 
 # Microsoft 365 利用状況可視化テンプレート
 
