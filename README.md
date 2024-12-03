@@ -14,7 +14,7 @@ Microsoft GIGAスクールパッケージ導入後の端末におけるMicrosoft
 ## 目次
 
 - [本プロジェクトについて](#-本プロジェクトについて)
-- [初期設定](#-初期設定)
+- [環境構築](#-環境構築)
 - [各レポートの利用方法](#-各レポートの利用方法)
 - [関連情報](#-関連情報)
 
@@ -118,9 +118,14 @@ graph BT
 
 <br>
 
+### 👨‍💻👩‍💻 対象者
+Microsoft 365 のグローバル管理者アカウントが利用可能なテナントのシステム管理者
+
+<br>
+
 ### 🎈 前提条件  
 1. **PC**  
-セットアップ用のコード実行やPower BI Desktopを利用するため、以下の要件を満たすPCを用意してください。  
+セットアップ用のコード実行やPower BI Desktopを利用するため、以下の要件を満たすPCを用意します。  
 
     | OS | バージョン |
     |:-|:-|
@@ -129,7 +134,7 @@ graph BT
   
       
 3. **ネットワーク**  
-資源のインストールやAPI実行を行うため、インターネット接続ができる環境を用意してください。  
+資源のインストールやAPI実行を行うため、インターネット接続ができる環境を用意します。  
   
 4. **Microsoft 365 ライセンス**  
 本プロジェクトのレポートを活用するためには、最低でもMicrosoft 365 A1 ライセンスが必要です。  
@@ -141,8 +146,8 @@ graph BT
     | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | Microsoft 365 A1 |
   
 5. **Microsoft 365 アカウントおよびグループ**  
-本プロジェクトの利用に際しては、本READMEに従ってMicrosoft 365 のログを蓄積するための初期設定が必要です。  
-初期設定にはMicrosoft 365 のグローバル管理者アカウントをご用意ください。  
+本プロジェクトの可視化テンプレートの利用に際しては、本READMEに従ってMicrosoft 365 のログを蓄積するための環境構築が必要です。  
+環境構築にはMicrosoft 365 のグローバル管理者アカウントをご用意ください。  
 また、レポートの種類ごとに以下のアカウントまたはグループもご用意ください。  
 **★グループの種類について追記する(セキュリティグループ or icrosoft 365 グループ)**
 
@@ -172,73 +177,226 @@ graph BT
 
 <br>
 
-## 📝 初期設定
+## 📝 環境構築
 
-### 👨‍🎓 対象者
-「初期設定」の手順については、Microsoft 365 テナントを管理している人に向けたものです。  
-※作業を行うにはMicrosoft 365 のグローバル管理者アカウントが必要です  
+Microsoft 365利用ログを自動で収集し、SharePointサイトへアップロードする構成をテナントに構築します。 
+
+### 1. 環境構築に必要なツールのインストール
+> [!NOTE]
+> + 環境構築を行うために以下のツールが必要です。
+> + 未インストールの場合やバージョンが古い場合は以下の手順でインストールします。
+
+- **Gitのインストール**
+  
+以下のコードをWindows PowerShellで実行します。  
+```shell
+winget install --id Git.Git -e --source winget
+```
+※動作確認済version：2.47.0.windows.2  
 
 <br>
 
-### 手順①: (必要に応じて)環境構築に必要なツールのインストール
+もし、コードが実行できなかった場合は、[こちら](https://gitforwindows.org/)から.exeファイルをダウンロード後、インストールを行ってください。
 
-環境構築を行うために以下のツールが必要です。未インストールの場合は以下の手順でインストールしてください。
+<details>
+<summary>クリックして手順を表示　</summary>
+    
+> 1. ダウンロードした.exeファイルを実行します。
+> 
+> 2. デフォルトの設定から変更せず、「Install」が表示されるまで  
+>    「Next」をクリックします。
+> |![Gitのインストール01](./images/Install/Install_Git01.png)|
+> |---|
+> 
+> 3. 「Install」をクリックします。
+> 
+> |![Gitのインストール02](./images/Install/Install_Git02.png)|
+> |---|
+>
+> 4. インストール完了後、以下の画面が表示されるため、「Finish」をクリックします。  
+> その後、ブラウザでページが表示されますが、閉じて構いません。
+> 
+> |![Gitのインストール03](./images/Install/Install_Git03.png)|
+> |---|
+  
+</details>
 
-- **Gitのインストール**
-
-  以下のコードをWindows PowerShellで実行するか、[こちら](https://gitforwindows.org/)の手順に従ってインストールしてください。
-  ```shell
-  winget install --id Git.Git -e --source winget
-  ```
-  ※動作確認済version：2.47.0.windows.2  
 
 - **GitHub CLIのインストール**
+  
+以下のコードをWindows PowerShellで実行します。
+```shell
+winget install --id GitHub.cli
+```
+※動作確認済version：2.60.1  
 
-  以下のコードをWindows PowerShellで実行するか、[こちら](https://cli.github.com/)の手順に従ってインストールしてください。
-  ```shell
-  winget install --id GitHub.cli
-  ```
-  ※動作確認済version：2.60.1  
+<br>
+
+もし、コードが実行できなかった場合は、[こちら](https://cli.github.com/)からmsiファイルをダウンロード後、以下の手順でインストールを行います。
+  
+<details>
+<summary>クリックして手順を表示　</summary>
+  
+
+> 1. ダウンロードしたmsiファイルを実行します。
+> 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
+
+
+> |![GitHub CLIのインストール01](./images/Install/Install_GitHubCLI01.png)|
+> |---|
+> 3. 「Install」をクリックします。  
+> |![GitHub CLIのインストール02](./images/Install/Install_GitHubCLI02.png)|
+> |---|
+> 4. インストール完了後、以下の画面が表示されるため「Finish」をクリックします。  
+> |![GitHub CLIのインストール03](./images/Install/Install_GitHubCLI03.png)|
+> |---|
+  
+</details>
 
 - **Azure CLIのインストール**
 
-  以下のコードをWindows PowerShellで実行するか、[こちら](https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-windows?tabs=azure-cli)の手順に従ってインストールしてください。
-  ```shell
-  Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
-  Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
-  ```
-  ※動作確認済version：2.65.0  
+以下のコードをWindows PowerShellで実行します。
+```shell
+Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
+Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
+```
 
-- **GitHubアカウントと組織の作成**
-  1. [GitHub](https://github.com/)にアクセス
-  2. サインアップをクリックしてアカウントを作成
-  3. 「Your Organization」から新規組織を作成
+※動作確認済version：2.65.0   
 
 <br>
 
-### 手順②: 環境構築
+もし、コードが実行できなかった場合は、[こちら](https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-windows?tabs=azure-cli)から.msiファイルをダウンロード後、以下の手順でインストールを行ってください。
+  
+<details>
+<summary>クリックして手順を表示　</summary>
 
-Microsoft 365 利用ログを自動で収集し、SharePointサイトへアップロードする構成をテナントに構築します。  
+> 1. ダウンロードした.msiファイルを実行します。
+>
+> 2. チェックボックスにチェックを入れて、「Install」をクリックします。  
+> 
+> |![Azure CLIのインストール01](./images/Install/Install_AzureCLI01.png)|
+> |---|
+> |![Azure CLIのインストール02](./images/Install/Install_AzureCLI02.png)|
+>
+> 3. インストール完了後、以下の画面が表示されるため、「Finish」をクリックします。  
+>
+> |![Azure CLIのインストール02](./images/Install/Install_AzureCLI03.png))|
+> |---|
 
+</details>
 
-1. **リポジトリの作成**  
-   GitHub上でプライベートリポジトリを作成します。  
-   「Your Organization > {組織名} > repository > New repository」から作成してください。  
-   ※**必ず"Private"を選択**し、**"Add a README file"にチェック**を付けてください。
+### 2. GitHubアカウントの作成
 
-2. **GitHubリポジトリの内容をローカルにクローン**  
-   PowerShellで次のコマンドを任意の場所で実行してください。
+> [!NOTE]
+> 画像は2024/12/02時点での画像です。画面のレイアウトが変更されている可能性があるため、ご注意ください。
+
+すでにGitHubアカウントを持っている場合は、3に移動します。
+<details>
+<summary>クリックして手順を表示　</summary>
+  
+> 1. [GitHub](https://github.com/)にアクセスします。
+>
+> 2. メールアドレスを入力後、「Sign up for GitHub」をクリックします。
+>
+>  
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount01.png" width="600">|
+> |---|
+> 3. パスワードとユーザー名を入力して、「Continue」をクリックします。
+  
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount02.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount03.png" width="600">|
+> 4. 「Verify」を押した後、指示通りに認証を行ってください。
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount04.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
+
+> 5. 2で入力したメールアドレスに届く8桁のコードを入力します。
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
+> |---|
+> 6. 画面が切り替わったら、ユーザー名とパスワードを入力して、「Sign in」をクリックします。
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount06.png" width="600">|
+> |---|
+> 7. 項目は選択せずに、「Continue」を押して、「Continue for free」を選択します。
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount07.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubAccount08.png" width="600">|
+> |---|
+</details>
+
+### 3. 新規組織の作成
+すでに使用する組織を作成している場合は、4に移動します。
+<details>
+<summary>クリックして手順を表示　</summary>
+
+> 1. GitHubアカウントにログイン後、右上のアイコンを押し、「Your Organization」を選択します。
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization01.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization02.png" width="600">|
+> |---|
+> 2. 「New Organization」を押した後に、「Create a free organization」を選択します。
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization03.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization04.png" width="600">|
+> |---|
+> 3. 組織名とメールアドレスを入力します。特に指定がない場合は、「My personal account」を選択します。  
+> 現在のアカウントではなく、組織のアカウントに紐づける場合は「A business or institution」を選択します。  
+> その後、「Verify」をクリックします。
+>  |<img src="./images/Setup_GitHub/Create_GitHubOrganization05.png" width="600">|
+> |---|
+> 4. 指示通りに認証を行ってください。その後、「Next」をクリックします。
+>  |<img src="./images/Setup_GitHub/Create_GitHubOrganization06.png" width="600">|
+> |---|
+> 5. 特に指定がない場合は、「Skip this step」を選択します。  
+> メンバーを追加する場合は、メンバーを選択後「Complete setup」をクリックします。
+> 以上で新規組織の作成が完了します。
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization07.png" width="600">|
+> |---|
+</details>
+
+### 4. 新規リポジトリの作成
+<details>
+<summary>クリックして手順を表示　</summary>
+
+1. GitHubアカウントにログイン後、右上のアイコンを押し、「Your Organization」を選択します。
+
+<img src="./images/Setup_GitHub/Create_GitHubOrganization01.png" width="600">
+<img src="./images/Setup_GitHub/Create_GitHubOrganization02.png" width="600">
+
+2. [3. 新規組織の作成]で作成した組織名もしくは、すでに作成済みの組織を選択します。
+
+<img src="./images/Setup_GitHub/Create_GitHubRepository01.png" width="600">
+
+3.左上のタブから、「Repositories」を選択後、「New repository」をクリックします。
+
+<img src="./images/Setup_GitHub/Create_GitHubRepository02.png" width="600">
+<img src="./images/Setup_GitHub/Create_GitHubRepository03.png" width="600">
+
+4.リポジトリ名を入力します。「Private」を選択し、「Add a README file」にチェックを入れた後に、「Create repository」をクリックします。以上で、新規リポジトリの作成が完了します。
+
+<img src="./images/Setup_GitHub/Create_GitHubRepository04.png" width="600">
+</details>
+
+<br>
+ 
+
+1. **GitHubリポジトリの内容をローカルにクローン**  
+   PowerShellで次のコマンドを任意の場所で実行します。
 
    ```shell
-   git clone https://github.com/ntc-uchida-co-jp/ms-giga-usage-report.git
+   git clone https://github.com/{~}/ms-device-usage-report.git
    ``` 
 
-3. **設定ファイルの編集**  
-  ローカルにクローンしたフォルダ内の`params.json`ファイル内の項目を編集し、上書き保存してください。  
-  "Organization name": GitHubの組織名を入力してください。  
-  "Repository name": 作成したGitHub組織のリポジトリ名を入力してください。  
-  "githubAccountName": GitHubアカウント名を入力してください。  
-  "githubAccountMail": GitHubアカウントに紐づいているメールアドレスを入力してください。  
+2. **設定ファイルの編集**  
+  ローカルにクローンしたフォルダ内の`params.json`ファイル内の下表の4項目を編集し、上書き保存します。  
+  params.jsonファイルは、ms-devaice-usage-report/src/000_setup/params.jsonにあります。
+> | パラメータ | 設定値 |
+> |---------|---------|
+> |Organization name| GitHubの組織名を入力します。(3で設定した組織名)|
+> |Repository name|作成したGitHub組織のリポジトリ名を入力します。（4で設定したリポジトリ名）|
+> |githubAccountName| GitHubアカウント名を入力します。（2で設定したアカウント名）|
+> |githubAccountMail|GitHubアカウントに紐づいているメールアドレスを入力します。（2で入力したメールアドレス）|
+> 
   
     例) Organization name = "TestOrganization", Repository name = "TestRepository", githubAccountName = "testGithubAccountName", githubAccountMail = "aaa@contoso.com"の場合  
     ```json
@@ -250,43 +408,155 @@ Microsoft 365 利用ログを自動で収集し、SharePointサイトへアッ�
     }
     ```
 
-4. **デプロイスクリプトの実行**  
-   「2. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした"ms-giga-usage-report"フォルダ内の"exec.bat"をダブルクリックで実行してください。  
-   ※認証や入力を求められた場合は指示に従ってください。
-   ※実行に失敗した場合は、"exec.bat"を再実行してください。
+3. **デプロイスクリプトの実行**  
+   「1. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした"ms-device-usage-report"フォルダ内の"exec.bat"をダブルクリックで実行します。  
+   exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあります。  
+   ※認証や入力を求められた場合は以下を参考にします。    
+   ※実行に失敗した場合は、"exec.bat"を再実行します。
+   <details>
+    <summary>GitHub CLIへのログイン　</summary>
+  
+    1. PowerShellに以下の画面が表示されたら、Enterをクリックします。
 
-5. **動作確認**  
-   数分後、SharePoint Onlineサイトにデータが出力されているか確認してください。データが正しく出力されていない場合は、設定を再確認してください。  
-   SharePoint OnlineサイトのURLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）  
+    <img src="./images/Login/Login_GitHubCLI01.png" width="600">
+  
+    2.画面上の8桁のコードをコピーして、Enterをクリックします。
+  
+    <img src="./images/Login/Login_GitHubCLI02.png" width="600">
+
+    3.「Continue」を押した後、2でコピーした8桁のコードをペーストし、再び「Continue」をクリックします。
+  
+     <img src="./images/Login/Login_GitHubCLI03.png" width="600">
+     <img src="./images/Login/Login_GitHubCLI04.png" width="600">
+
+    4. 「Authorize github」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+     <img src="./images/Login/Login_GitHubCLI05.png" width="600">
+
+    5.以下の画面が表示されたら、GitHub CLIへのログインが完了します。
+  
+      <img src="./images/Login/Login_GitHubCLI06.png" width="600">
+</details>
+
+<details>
+  <summary>Azure CLIのログイン　</summary>
+  
+  1.以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+
+  <img src="./images/Login/Login_AzureCLI01.png" width="600">
+  
+  2.PowerShellのコンソールが以下の画面になったら、Enterをクリックします。
+  
+  <img src="./images/Login/Login_AzureCLI02.png" width="600">
+</details>
+
+<details>
+  <summary>Azureアカウントへのログイン　</summary>
+  
+  1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+
+  <img src="./images/Login/Login_AzureAccount01.png" width="600">
+</details>
+
+<details>
+  <summary>Microsoft Graphへのログイン　</summary>
+  
+  1. ブラウザが立ち上がり、以下の画面が表示されるため、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+
+  <img src="./images/Login/Login_MicrosoftGraph01.png" width="600">
+
+  2.以下の画面が表示されたら、Microsoft Graphアカウントへのログインは完了です。
+  
+  <img src="./images/Login/Login_MicrosoftGraph02.png" width="600">
+</details>
+
+<details>
+  <summary>SharePoint Online管理シェルへのログイン　</summary>
+  
+  1.以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+
+  <img src="./images/Login/Login_SPOService01.png" width="600">
+</details>
+
+4. **動作確認**
+   数分後、SharePoint Onlineサイトにデータが出力されているか以下の手順で確認します。  
+   データが正しく出力されていない場合は、params.jsonの設定を再確認します。
    
-   **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
+   <details>
+   <summary>クリックして手順を表示　</summary>
+     
+   > 1. SharePoint Onlineサイトにアクセスします。  
+   > URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）
+   >
+   > **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
+   > 
+   > 2. 左側のタブから、「ドキュメント」を選択します。
+   > 
+   >|<img src="./images/Access/Access_SharePoint01.png" width="600">|
+   >|---|
+   > 3. M365UsageRecords>・・・(ここは具体的に書く)と選択していき、27日分のExcelファイルがあることを確認します。  
+   > 以上で、データが出力されているかの確認は完了しました。
 
+   </details>
 <br>
 
 ### 手順③: (必要に応じて)アクセス権設定  
 
-"手順②: 環境構築"で、Microsoft 365 の利用ログや現在Entra ID上に登録されているユーザー情報などがSharePointサイト上に追加されるようになりました。  
+"手順②: 環境構築"で、Microsoft 365の利用ログや現在Entra ID上に登録されているユーザー情報などがSharePointサイト上に追加されるようになりました。  
 しかし、他のユーザーがPower BIのレポートを閲覧する場合は以下の手順による権限設定が必要です。  
-※初期設定実施者のみが[010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)や[020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)を利用する場合は、作業の必要はございません。  
+※環境構築実施者のみが[010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)や[020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)を利用する場合は、作業の必要はございません。  
 
 
 #### アクセス権設定作業 
-  1. [Azure Portal](https://portal.azure.com/)にログインし、Microsoft Entra IDを開く。  
-  2. 「グループ > すべてのグループ」から、"**M365UsageRecords_site_access_group**"を選択する。  
-  3. 「メンバー > メンバーの追加」から、レポートを参照するユーザーを追加する。
-  > [!CAUTION]
-  > 本グループは、テナントのシステム管理者のみ所属することを前提にしているため、追加したメンバーはMicrosoft 365 テナントのすべてのアカウントの利用ログやユーザー情報を閲覧できる状態になります。  
-  > ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなるSharePoint Onlineサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります。  
-  > そのため、**テナントのシステム管理者のみに対してアクセス権を付与(グループへの追加)することを強く推奨します。**
 
+   <details>
+   <summary>クリックして手順を表示　</summary>
+   
+   > 1.  [Azure Portal](https://portal.azure.com/)にログインします。
+   >
+   > 2. Azure サービスから、「Microsoft Entra ID」を選択します。
+   >
+   > |<img src="./images/Access/Access_Azure01.png" width="600">|
+   > |---|
+   >
+   > 3. 左側のタブから、「グループ > すべてのグループ」を選択します。
+   >
+   > |<img src="./images/Access/Access_Azure02.png" width="600">|
+   > |---|
+   > |<img src="./images/Access/Access_Azure03.png" width="600">|
+   >
+   > 4. グループの中から、"**M365UsageRecords_site_access_group**"を選択します。
+   >
+   > |<img src="./images/Access/Access_Azure04.png" width="600">|
+   > |---|
+   >
+   > 5. 左側の「管理」タブを展開し、「メンバー」を選択します。
+   >
+   > |<img src="./images/Access/Access_Azure05.png" width="600">|
+   > |---|
+   > |<img src="./images/Access/Access_Azure06.png" width="600">|
+   > 
+   > 6. 上側の「メンバーの追加」を選択し、レポートを参照するユーザーを追加します。  
+   > 以上で、アクセス権の設定作業は完了です。
+   >
+   > |<img src="./images/Access/Access_Azure07.png" width="600">|
+   > |---|
+
+   </details>
+   
+  > [!CAUTION]
+  > 本グループに追加したメンバーについては、**Microsoft 365テナントのすべてのアカウントの利用ログを閲覧できる状態になります。**  
+　> ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなる**SharePointサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります**
+  > セキュリティの観点から、テナントのシステム管理者のみアクセス権を付与することを推奨します。
+
+   
 <br>
 
 ## 📃 各レポートの利用方法
 
-前提条件別に以下3種のレポートを公開しています。リンク先の手順に従ってそれぞれ利用してください。
+前提条件別に以下3種のレポートを公開しています。リンク先の手順に従ってそれぞれ利用します。
 
-- [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)
-- [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)  
+1. [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)
+2. [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)  
    ※利用のためには各Microsot 365 IDがどの学校に所属しているのかを示す名簿ファイルの作成が必要
 
 <br>
