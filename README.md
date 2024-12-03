@@ -500,7 +500,7 @@ exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあ�
 > 1. SharePoint Onlineサイトにアクセスします。  
 > URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）
 >   
-> **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
+>   **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
 > 
 > 2. 左側のタブから、「ドキュメント」を選択します。
 > 
@@ -510,65 +510,64 @@ exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあ�
 </details>
 <br>
 
-### 手順③: (必要に応じて)アクセス権設定  
+### 9. アクセス権設定  
+> [!NOTE]
+> + 環境構築したユーザー以外がレポートを利用する場合のみ実施する。
 
-"手順②: 環境構築"で、Microsoft 365の利用ログや現在Entra ID上に登録されているユーザー情報などがSharePointサイト上に追加されるようになりました。  
+これまでの構築作業で、Microsoft 365 の利用ログや現在Entra ID上に登録されているユーザー情報がSharePoint Onlineサイト上に追加されるようになりました。  
 しかし、他のユーザーがPower BIのレポートを閲覧する場合は以下の手順による権限設定が必要です。  
-※環境構築実施者のみが[010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)や[020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)を利用する場合は、作業の必要はございません。  
 
+> [!CAUTION]
+> 本グループは、テナントのシステム管理者のみ所属することを前提にしているため、追加したメンバーはMicrosoft 365 テナントのすべてのアカウントの利用ログやユーザー情報を閲覧できる状態になります。  
+> ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなるSharePoint Onlineサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります。  
+> そのため、**テナントのシステム管理者のみに対してアクセス権を付与(グループへの追加)することを強く推奨します。**
 
 #### アクセス権設定作業 
 
-   <details>
-   <summary>クリックして手順を表示　</summary>
-   
-   > 1.  [Azure Portal](https://portal.azure.com/)にログインします。
-   >
-   > 2. Azure サービスから、「Microsoft Entra ID」を選択します。
-   >
-   > |<img src="./images/Access/Access_Azure01.png" width="600">|
-   > |---|
-   >
-   > 3. 左側のタブから、「グループ > すべてのグループ」を選択します。
-   >
-   > |<img src="./images/Access/Access_Azure02.png" width="600">|
-   > |---|
-   > |<img src="./images/Access/Access_Azure03.png" width="600">|
-   >
-   > 4. グループの中から、"**M365UsageRecords_site_access_group**"を選択します。
-   >
-   > |<img src="./images/Access/Access_Azure04.png" width="600">|
-   > |---|
-   >
-   > 5. 左側の「管理」タブを展開し、「メンバー」を選択します。
-   >
-   > |<img src="./images/Access/Access_Azure05.png" width="600">|
-   > |---|
-   > |<img src="./images/Access/Access_Azure06.png" width="600">|
-   > 
-   > 6. 上側の「メンバーの追加」を選択し、レポートを参照するユーザーを追加します。  
-   > 以上で、アクセス権の設定作業は完了です。
-   >
-   > |<img src="./images/Access/Access_Azure07.png" width="600">|
-   > |---|
+<details>
+<summary>クリックして手順を表示　</summary>
 
-   </details>
-   
-  > [!CAUTION]
-  > 本グループに追加したメンバーについては、**Microsoft 365テナントのすべてのアカウントの利用ログを閲覧できる状態になります。**  
-　> ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなる**SharePointサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります**
-  > セキュリティの観点から、テナントのシステム管理者のみアクセス権を付与することを推奨します。
+> 1.  [Azure Portal](https://portal.azure.com/)にログインします。
+>
+> 2. Azure サービスから、「Microsoft Entra ID」を選択します。
+>
+> |<img src="./images/Access/Access_Azure01.png" width="600">|
+> |---|
+>
+> 3. 左側のタブから、「グループ > すべてのグループ」を選択します。
+>
+> |<img src="./images/Access/Access_Azure02.png" width="600">|
+> |---|
+> |<img src="./images/Access/Access_Azure03.png" width="600">|
+>
+> 4. グループの中から、"**M365UsageRecords_site_access_group**"を選択します。
+>
+> |<img src="./images/Access/Access_Azure04.png" width="600">|
+> |---|
+>
+> 5. 左側の「管理」タブを展開し、「メンバー」を選択します。
+>
+> |<img src="./images/Access/Access_Azure05.png" width="600">|
+> |---|
+> |<img src="./images/Access/Access_Azure06.png" width="600">|
+> 
+> 6. 上側の「メンバーの追加」を選択し、レポートを参照するユーザーを追加します。  
+> 以上で、アクセス権の設定作業は完了です。
+>
+> |<img src="./images/Access/Access_Azure07.png" width="600">|
+> |---|
 
-   
+</details>
+
 <br>
 
 ## 📃 各レポートの利用方法
 
-前提条件別に以下3種のレポートを公開しています。リンク先の手順に従ってそれぞれ利用します。
+前提条件別に以下のレポートを公開しています。リンク先の手順に従ってそれぞれ利用方法を確認します。
 
 1. [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)
 2. [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)  
-   ※利用のためには各Microsot 365 IDがどの学校に所属しているのかを示す名簿ファイルの作成が必要
+※利用のためには各Microsot 365 IDがどの学校に所属しているのかを示す名簿ファイルの作成が必要
 
 <br>
 
