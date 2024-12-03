@@ -1,6 +1,6 @@
 <a name="top"></a>
 <div align="right">
-  <img src="https://github.com/ntc-uchida-co-jp/ms-giga-usage-report/blob/fix_readme_241202/images/Microsoft365_and_windows11.png" width="450">
+  <img src="./images/Microsoft365_and_windows11.png" width="450">
 </div>
 
 # Microsoft 365 利用状況可視化テンプレート
@@ -110,7 +110,7 @@ graph BT
 ```
 
 **【レポート画面】**
-|<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="600">|
+|<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="100%">|
 |---------|
 
 <br>
@@ -149,7 +149,7 @@ graph BT
     | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。 |
 
   > [!CAUTION]
-  > テナント全体のユーザーの利用ログにアクセスするため、教員による本レポートの利用はセキュリティの観点から推奨していません。
+  > テナント全体のユーザーの利用ログにアクセスするため、教員・児童生徒による本レポートの利用は推奨していません。
   
 5. **その他**  
 レポートの種類ごとに、前提となる設定や運用に違いがあります。  
@@ -272,9 +272,9 @@ Microsoft 365 利用ログを自動で収集し、SharePointサイトへアッ�
   2. 「グループ > すべてのグループ」から、"**M365UsageRecords_site_access_group**"を選択する。  
   3. 「メンバー > メンバーの追加」から、レポートを参照するユーザーを追加する。
   > [!CAUTION]
-  > 本グループに追加したメンバーについては、**Microsoft 365 テナントのすべてのアカウントの利用ログを閲覧できる状態になります。**  
-　> ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなる**SharePoint Onlineサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります**
-  > セキュリティの観点から、テナントのシステム管理者のみアクセス権を付与することを推奨します。
+  > 本グループは、テナントのシステム管理者のみ所属することを前提にしているため、追加したメンバーは**Microsoft 365 テナントのすべてのアカウントの利用ログやユーザー情報を閲覧できる状態になります。**  
+  > ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなる**SharePoint Onlineサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります。**  
+  > そのため、テナントのシステム管理者のみに対してアクセス権を付与(グループへの追加)することを推奨します。
 
 <br>
 
