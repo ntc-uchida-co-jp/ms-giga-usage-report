@@ -392,8 +392,7 @@ git clone https://github.com/{~}/ms-giga-usage-report.git
 ### 7. デプロイスクリプトの実行 
 「5. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした`ms-giga-usage-report`フォルダ内の`exec.bat`をダブルクリックで実行します。  
 `exec.bat`ファイルは、`ms-giga-usage-report/src/000_setup/exec.bat`に存在します。  
-※認証や入力を求められた場合は以下を参考にします。  
-※実行に失敗した場合は、`exec.bat`を再実行します。  
+※実行に失敗した場合は、`params.json`の内容を確認し`exec.bat`を再実行します。  
 
 <details>
 <summary>クリックして手順を表示　</summary>
