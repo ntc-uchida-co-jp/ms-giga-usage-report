@@ -203,8 +203,8 @@ winget install --id Git.Git -e --source winget
     
 > 1. ダウンロードした.exeファイルを実行します。
 > 
-> 2. デフォルトの設定から変更せず、「Install」が表示されるまで  
->    「Next」をクリックします。
+> 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
+> 
 > |![Gitのインストール01](./images/Install/Install_Git01.png)|
 > |---|
 > 
@@ -240,14 +240,15 @@ winget install --id GitHub.cli
 
 > 1. ダウンロードしたmsiファイルを実行します。
 > 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
-
-
+> 
 > |![GitHub CLIのインストール01](./images/Install/Install_GitHubCLI01.png)|
 > |---|
 > 3. 「Install」をクリックします。  
+> 
 > |![GitHub CLIのインストール02](./images/Install/Install_GitHubCLI02.png)|
 > |---|
 > 4. インストール完了後、以下の画面が表示されるため「Finish」をクリックします。  
+> 
 > |![GitHub CLIのインストール03](./images/Install/Install_GitHubCLI03.png)|
 > |---|
   
@@ -297,31 +298,32 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 > 1. [GitHub](https://github.com/)にアクセスします。
 >
 > 2. メールアドレスを入力後、「Sign up for GitHub」をクリックします。
->
 >  
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount01.png" width="600">|
 > |---|
 > 3. パスワードとユーザー名を入力して、「Continue」をクリックします。
-  
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount02.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount03.png" width="600">|
 > 4. 「Verify」を押した後、指示通りに認証を行ってください。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount04.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
-
 > 5. 2で入力したメールアドレスに届く8桁のコードを入力します。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
 > |---|
 > 6. 画面が切り替わったら、ユーザー名とパスワードを入力して、「Sign in」をクリックします。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount06.png" width="600">|
 > |---|
 > 7. 項目は選択せずに、「Continue」を押して、「Continue for free」を選択します。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount07.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount08.png" width="600">|
-> |---|
 </details>
 
 ### 3. 新規組織の作成
@@ -330,26 +332,29 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 <summary>クリックして手順を表示　</summary>
 
 > 1. GitHubアカウントにログイン後、右上のアイコンを押し、「Your Organization」を選択します。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization01.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization02.png" width="600">|
-> |---|
 > 2. 「New Organization」を押した後に、「Create a free organization」を選択します。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization03.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization04.png" width="600">|
-> |---|
 > 3. 組織名とメールアドレスを入力します。特に指定がない場合は、「My personal account」を選択します。  
 > 現在のアカウントではなく、組織のアカウントに紐づける場合は「A business or institution」を選択します。  
 > その後、「Verify」をクリックします。
->  |<img src="./images/Setup_GitHub/Create_GitHubOrganization05.png" width="600">|
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization05.png" width="600">|
 > |---|
 > 4. 指示通りに認証を行ってください。その後、「Next」をクリックします。
->  |<img src="./images/Setup_GitHub/Create_GitHubOrganization06.png" width="600">|
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization06.png" width="600">|
 > |---|
 > 5. 特に指定がない場合は、「Skip this step」を選択します。  
 > メンバーを追加する場合は、メンバーを選択後「Complete setup」をクリックします。
 > 以上で新規組織の作成が完了します。
+> 
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization07.png" width="600">|
 > |---|
 </details>
