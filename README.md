@@ -1,7 +1,15 @@
 <a name="top"></a>
 <div align="right">
-  <img src="./images/Microsoft365_and_windows11.png" width="450">
+  <span style="margin: 0 10px;">GIGAスクールソリューション powered by</span>
+  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb3.png" width="100">
+  <font size="20 "face="Arial">GIGAスクールソリューション powered by</font>
+  <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk3.png" width="100">
 </div>
+
+<p align="right">
+  <img src="./images/Microsoft365_logo_horiz_c-gray_rgb3.png" width="100"> 文字の間 <img src="./images/WIN22_Windows11_logo_horiz_blue_cmyk3.png" width="100">
+</p>
+
 
 # Microsoft 365 利用状況可視化テンプレート
 
