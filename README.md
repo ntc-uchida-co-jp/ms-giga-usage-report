@@ -41,9 +41,9 @@ Microsoft 365 を利用しているテナントについては、Microsoft 365 �
 本プロジェクトの目的は以下の通りです。
 
 - **テナント全体のMicrosoft 365 利用ログ蓄積**:  
-  GIGAスクール構想で導入したMicrosoft 365 テナントの利用状況を文部科学省に報告する必要がある可能性があるため、SharePoint Online サイト上で長期的なログの保管を行います。
+GIGAスクール構想で導入したMicrosoft 365 テナントの利用状況を文部科学省に報告する必要がある可能性があるため、SharePoint Online サイト上で長期的なログの保管を行います。
 - **Microsoft 365 利用状況の可視化**:  
-  蓄積されたログをPower BIを使って視覚的にわかりやすく可視化します。
+蓄積されたログをPower BIを使って視覚的にわかりやすく可視化します。
 
 <br>
 
@@ -127,10 +127,10 @@ Microsoft 365 のグローバル管理者アカウントが利用可能なテナ
 1. **PC**  
 セットアップ用のコード実行やPower BI Desktopを利用するため、以下の要件を満たすPCを用意します。  
 
-    | OS | バージョン |
-    |:-|:-|
-    | Windows 10 | 22H2以降 |
-    | Windows 11 | **★Windows 11での動作確認をする** |
+| OS | バージョン |
+|:-|:-|
+| Windows 10 | 22H2以降 |
+| Windows 11 | **★Windows 11での動作確認をする** |
   
       
 3. **ネットワーク**  
@@ -140,40 +140,40 @@ Microsoft 365 のグローバル管理者アカウントが利用可能なテナ
 本プロジェクトのレポートを活用するためには、最低でもMicrosoft 365 A1 ライセンスが必要です。  
 また、本プロジェクトが提供するレポートの種別ごとに必要なライセンスが異なります。    
   
-    | レポート種別 | 必要なライセンス |
-    |:-|:-|
-    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | Microsoft 365 A1 |
-    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | Microsoft 365 A1 |
+| レポート種別 | 必要なライセンス |
+|:-|:-|
+| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | Microsoft 365 A1 |
+| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | Microsoft 365 A1 |
   
 5. **Microsoft 365 アカウントおよびグループ**  
 本プロジェクトの可視化テンプレートの利用に際しては、本READMEに従ってMicrosoft 365 のログを蓄積するための環境構築が必要です。  
-環境構築にはMicrosoft 365 のグローバル管理者アカウントをご用意ください。  
-また、レポートの種類ごとに以下のアカウントまたはグループもご用意ください。  
+環境構築にはMicrosoft 365 のグローバル管理者アカウントが必要となります。  
+また、レポートの種類ごとに以下のアカウントまたはグループが必要となります。  
 **★グループの種類について追記する(セキュリティグループ or icrosoft 365 グループ)**
 
-    | レポート種別 | 必要なアカウントまたはグループ |
-    |:-|:-|
-    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。 |
-    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。後述する"**M365UsageRecords_site_access_group**"への所属が必要。 |
+| レポート種別 | 必要なアカウントまたはグループ |
+|:-|:-|
+| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。 |
+| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。後述する"**M365UsageRecords_site_access_group**"への所属が必要。 |
 
-  > [!CAUTION]
-  > テナント全体のユーザーの利用ログにアクセスするため、教員・児童生徒による本レポートの利用は推奨していません。
+> [!CAUTION]
+> テナント全体のユーザーの利用ログにアクセスするため、教員・児童生徒による本レポートの利用は推奨していません。
   
 5. **その他**  
 レポートの種類ごとに、前提となる設定や運用に違いがあります。  
     
-    | レポート種別 | 想定利用者 | ログ匿名化設定(※1) | 名簿情報の運用(※2)  |
-    |:-|:-|:-|:-|
-    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | 自治体のシステム管理者 | 有効 or 無効 | 無 |
-    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | 自治体のシステム管理者 | 無効 | 有 |
+| レポート種別 | 想定利用者 | ログ匿名化設定(※1) | 名簿情報の運用(※2)  |
+|:-|:-|:-|:-|
+| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | 自治体のシステム管理者 | 有効 or 無効 | 無 |
+| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | 自治体のシステム管理者 | 無効 | 有 |
 
-    **※1)ログ匿名化設定**:  
-    2021年9月1日以降、Microsoft 365 上の利用状況レポートのユーザー識別情報は既定で匿名化されています。  
-    学校毎の利用状況を集計する場合は、[匿名化をオフにする](https://learn.microsoft.com/ja-jp/microsoft-365/troubleshoot/miscellaneous/reports-show-anonymous-user-name#resolution)必要があります。
-  
-    **※2)名簿情報の運用**:  
-    学校毎の利用状況を集計する場合は、Microsoft 365 アカウントごとの学校等の所属情報が必要となります。  
-    Microsoft 365 テナントによって所属情報の運用方法は異なるため、本プロジェクトでは所属情報の名簿をExcelで作成し、**少なくとも年度ごとに1度は継続的な更新を行っていただく前提としています。**  
+**※1)ログ匿名化設定**:  
+2021年9月1日以降、Microsoft 365 上の利用状況レポートのユーザー識別情報は既定で匿名化されています。  
+学校毎の利用状況を集計する場合は、[匿名化をオフにする](https://learn.microsoft.com/ja-jp/microsoft-365/troubleshoot/miscellaneous/reports-show-anonymous-user-name#resolution)必要があります。
+
+**※2)名簿情報の運用**:  
+学校毎の利用状況を集計する場合は、Microsoft 365 アカウントごとの学校等の所属情報が必要となります。  
+Microsoft 365 テナントによって所属情報の運用方法は異なるため、本プロジェクトでは所属情報の名簿をExcelで作成し、**少なくとも年度ごとに1度は継続的な更新を行っていただく前提としています。**  
 
 <br>
 
@@ -182,61 +182,51 @@ Microsoft 365 のグローバル管理者アカウントが利用可能なテナ
 Microsoft 365利用ログを自動で収集し、SharePointサイトへアップロードする構成をテナントに構築します。 
 
 ### 1. 環境構築に必要なツールのインストール
-> [!NOTE]
-> + 環境構築を行うために以下のツールが必要です。
-> + 未インストールの場合やバージョンが古い場合は以下の手順でインストールします。
 
-- **Gitのインストール**
-  
+環境構築を行うために、事前に以下に示すツールが必要です。未インストールの場合やバージョンが古い場合は以下の手順でインストールします。
+> [!NOTE]
+> + 手順の中のスクリーンショットは2024/12/02時点での画面です。現在の画面とは異なる場合がございます。
+
+- Gitのインストール
 以下のコードをWindows PowerShellで実行します。  
 ```shell
 winget install --id Git.Git -e --source winget
 ```
 ※動作確認済version：2.47.0.windows.2  
 
-<br>
 
-もし、コードが実行できなかった場合は、[こちら](https://gitforwindows.org/)から.exeファイルをダウンロード後、インストールを行ってください。
+コードが実行できなかった場合は[こちら](https://gitforwindows.org/)から.exeファイルをダウンロード後、以下の手順でインストールを行います。
 
 <details>
 <summary>クリックして手順を表示　</summary>
     
 > 1. ダウンロードした.exeファイルを実行します。
-> 
 > 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
 > 
 > |![Gitのインストール01](./images/Install/Install_Git01.png)|
 > |---|
-> 
 > 3. 「Install」をクリックします。
 > 
 > |![Gitのインストール02](./images/Install/Install_Git02.png)|
 > |---|
->
 > 4. インストール完了後、以下の画面が表示されるため、「Finish」をクリックします。  
 > その後、ブラウザでページが表示されますが、閉じて構いません。
 > 
 > |![Gitのインストール03](./images/Install/Install_Git03.png)|
 > |---|
-  
 </details>
 
-
-- **GitHub CLIのインストール**
-  
+- GitHub CLIのインストール
 以下のコードをWindows PowerShellで実行します。
 ```shell
 winget install --id GitHub.cli
 ```
 ※動作確認済version：2.60.1  
 
-<br>
 
-もし、コードが実行できなかった場合は、[こちら](https://cli.github.com/)からmsiファイルをダウンロード後、以下の手順でインストールを行います。
-  
+コードが実行できなかった場合は、[こちら](https://cli.github.com/)から.msiファイルをダウンロード後、以下の手順でインストールを行います。
 <details>
 <summary>クリックして手順を表示　</summary>
-  
 
 > 1. ダウンロードしたmsiファイルを実行します。
 > 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
@@ -251,67 +241,56 @@ winget install --id GitHub.cli
 > 
 > |![GitHub CLIのインストール03](./images/Install/Install_GitHubCLI03.png)|
 > |---|
-  
 </details>
 
-- **Azure CLIのインストール**
-
+- Azure CLIのインストール
 以下のコードをWindows PowerShellで実行します。
 ```shell
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
 Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 ```
-
 ※動作確認済version：2.65.0   
 
-<br>
-
-もし、コードが実行できなかった場合は、[こちら](https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-windows?tabs=azure-cli)から.msiファイルをダウンロード後、以下の手順でインストールを行ってください。
-  
+コードが実行できなかった場合は、[こちら](https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-windows?tabs=azure-cli)から.msiファイルをダウンロード後、以下の手順でインストールを行います。  
 <details>
 <summary>クリックして手順を表示　</summary>
 
 > 1. ダウンロードした.msiファイルを実行します。
->
 > 2. チェックボックスにチェックを入れて、「Install」をクリックします。  
 > 
 > |![Azure CLIのインストール01](./images/Install/Install_AzureCLI01.png)|
 > |---|
 > |![Azure CLIのインストール02](./images/Install/Install_AzureCLI02.png)|
->
 > 3. インストール完了後、以下の画面が表示されるため、「Finish」をクリックします。  
 >
 > |![Azure CLIのインストール02](./images/Install/Install_AzureCLI03.png))|
 > |---|
-
 </details>
 
 ### 2. GitHubアカウントの作成
-
+環境構築を行うために、作業者のMicrosoft 365 アカウントと紐づくGitHubアカウントを作成します。
 > [!NOTE]
-> 画像は2024/12/02時点での画像です。画面のレイアウトが変更されている可能性があるため、ご注意ください。
+> + 作業者のアカウントと紐づくGitHubアカウントが存在する場合は、"3. GitHub組織の作成"に移動します。
 
-すでにGitHubアカウントを持っている場合は、3に移動します。
 <details>
 <summary>クリックして手順を表示　</summary>
   
 > 1. [GitHub](https://github.com/)にアクセスします。
->
-> 2. メールアドレスを入力後、「Sign up for GitHub」をクリックします。
+> 2. Microsoft 365 アカウントのメールアドレスを入力後、「Sign up for GitHub」をクリックします。
 >  
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount01.png" width="600">|
 > |---|
-> 3. パスワードとユーザー名を入力して、「Continue」をクリックします。
+> 3. ユーザー名/パスワードを設定し、「Continue」をクリックします。
 > 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount02.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount03.png" width="600">|
-> 4. 「Verify」を押した後、指示通りに認証を行ってください。
+> 4. 「Verify」を押した後、画面の指示通りに認証を行います。
 > 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount04.png" width="600">|
 > |---|
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
-> 5. 2で入力したメールアドレスに届く8桁のコードを入力します。
+> 5. 2. で入力したメールアドレスに届く8桁のコードを入力します。
 > 
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount05.png" width="600">|
 > |---|
@@ -326,7 +305,7 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 > |<img src="./images/Setup_GitHub/Create_GitHubAccount08.png" width="600">|
 </details>
 
-### 3. 新規組織の作成
+### 3. GitHub組織の作成
 すでに使用する組織を作成している場合は、4に移動します。
 <details>
 <summary>クリックして手順を表示　</summary>
@@ -347,7 +326,7 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 > 
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization05.png" width="600">|
 > |---|
-> 4. 指示通りに認証を行ってください。その後、「Next」をクリックします。
+> 4. 画面の指示通りに認証を行います。その後「Next」をクリックします。
 > 
 > |<img src="./images/Setup_GitHub/Create_GitHubOrganization06.png" width="600">|
 > |---|
