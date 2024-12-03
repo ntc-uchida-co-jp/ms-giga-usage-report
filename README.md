@@ -363,145 +363,151 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 <details>
 <summary>クリックして手順を表示　</summary>
 
-1. GitHubアカウントにログイン後、右上のアイコンを押し、「Your Organization」を選択します。
-
-<img src="./images/Setup_GitHub/Create_GitHubOrganization01.png" width="600">
-<img src="./images/Setup_GitHub/Create_GitHubOrganization02.png" width="600">
-
-2. [3. 新規組織の作成]で作成した組織名もしくは、すでに作成済みの組織を選択します。
-
-<img src="./images/Setup_GitHub/Create_GitHubRepository01.png" width="600">
-
-3.左上のタブから、「Repositories」を選択後、「New repository」をクリックします。
-
-<img src="./images/Setup_GitHub/Create_GitHubRepository02.png" width="600">
-<img src="./images/Setup_GitHub/Create_GitHubRepository03.png" width="600">
-
-4.リポジトリ名を入力します。「Private」を選択し、「Add a README file」にチェックを入れた後に、「Create repository」をクリックします。以上で、新規リポジトリの作成が完了します。
-
-<img src="./images/Setup_GitHub/Create_GitHubRepository04.png" width="600">
+> 1. GitHubアカウントにログイン後、右上のアイコンを押し、「Your Organization」を選択します。
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization01.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubOrganization02.png" width="600">|
+> 2. [3. 新規組織の作成]で作成した組織名もしくは、すでに作成済みの組織を選択します。
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubRepository01.png" width="600">|
+> |---|
+> 3. 左上のタブから、「Repositories」を選択後、「New repository」をクリックします。
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubRepository02.png" width="600">|
+> |---|
+> |<img src="./images/Setup_GitHub/Create_GitHubRepository03.png" width="600">|
+> 4. リポジトリ名を入力します。「Private」を選択し、「Add a README file」にチェックを入れた後に、「Create repository」をクリックします。以上で、新規リポジトリの作成が完了します。
+> 
+> |<img src="./images/Setup_GitHub/Create_GitHubRepository04.png" width="600">|
+> |---|
 </details>
 
 <br>
  
 
-1. **GitHubリポジトリの内容をローカルにクローン**  
-   PowerShellで次のコマンドを任意の場所で実行します。
+### 5.  **GitHubリポジトリの内容をローカルにクローン**  
+PowerShellで次のコマンドを任意の場所で実行します。
 
-   ```shell
-   git clone https://github.com/{~}/ms-device-usage-report.git
-   ``` 
+```shell
+git clone https://github.com/{~}/ms-device-usage-report.git
+``` 
 
-2. **設定ファイルの編集**  
-  ローカルにクローンしたフォルダ内の`params.json`ファイル内の下表の4項目を編集し、上書き保存します。  
-  params.jsonファイルは、ms-devaice-usage-report/src/000_setup/params.jsonにあります。
-> | パラメータ | 設定値 |
-> |---------|---------|
-> |Organization name| GitHubの組織名を入力します。(3で設定した組織名)|
-> |Repository name|作成したGitHub組織のリポジトリ名を入力します。（4で設定したリポジトリ名）|
-> |githubAccountName| GitHubアカウント名を入力します。（2で設定したアカウント名）|
-> |githubAccountMail|GitHubアカウントに紐づいているメールアドレスを入力します。（2で入力したメールアドレス）|
+### 6. 設定ファイルの編集
+ローカルにクローンしたフォルダ内の`params.json`ファイル内の下表の4項目を編集し、上書き保存します。  
+params.jsonファイルは、ms-devaice-usage-report/src/000_setup/params.jsonにあります。
+| パラメータ | 設定値 |
+|---------|---------|
+|Organization name| GitHubの組織名を入力します。(3で設定した組織名)|
+|Repository name|作成したGitHub組織のリポジトリ名を入力します。（4で設定したリポジトリ名）|
+|githubAccountName| GitHubアカウント名を入力します。（2で設定したアカウント名）|
+|githubAccountMail|GitHubアカウントに紐づいているメールアドレスを入力します。（2で入力したメールアドレス）|
+
+
+例) Organization name = "TestOrganization", Repository name = "TestRepository", githubAccountName = "testGithubAccountName", githubAccountMail = "aaa@contoso.com"の場合  
+
+```json
+{
+    "githubOrganizationName": "TestOrganization",
+    "githubRepositoryName": "TestRepository",
+    "githubAccountName": "testGithubAccountName",
+    "githubAccountMail": "aaa@contoso.com"
+}
+```
+
+### 7. デプロイスクリプトの実行 
+「5. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした"ms-device-usage-report"フォルダ内の"exec.bat"をダブルクリックで実行します。  
+exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあります。  
+※認証や入力を求められた場合は以下を参考にします。    
+※実行に失敗した場合は、"exec.bat"を再実行します。
+<details>
+<summary>GitHub CLIへのログイン　</summary>
+
+> 1. PowerShellに以下の画面が表示されたら、Enterをクリックします。
 > 
-  
-    例) Organization name = "TestOrganization", Repository name = "TestRepository", githubAccountName = "testGithubAccountName", githubAccountMail = "aaa@contoso.com"の場合  
-    ```json
-    {
-        "githubOrganizationName": "TestOrganization",
-        "githubRepositoryName": "TestRepository",
-        "githubAccountName": "testGithubAccountName",
-        "githubAccountMail": "aaa@contoso.com"
-    }
-    ```
-
-3. **デプロイスクリプトの実行**  
-   「1. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした"ms-device-usage-report"フォルダ内の"exec.bat"をダブルクリックで実行します。  
-   exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあります。  
-   ※認証や入力を求められた場合は以下を参考にします。    
-   ※実行に失敗した場合は、"exec.bat"を再実行します。
-   <details>
-    <summary>GitHub CLIへのログイン　</summary>
-  
-    1. PowerShellに以下の画面が表示されたら、Enterをクリックします。
-
-    <img src="./images/Login/Login_GitHubCLI01.png" width="600">
-  
-    2.画面上の8桁のコードをコピーして、Enterをクリックします。
-  
-    <img src="./images/Login/Login_GitHubCLI02.png" width="600">
-
-    3.「Continue」を押した後、2でコピーした8桁のコードをペーストし、再び「Continue」をクリックします。
-  
-     <img src="./images/Login/Login_GitHubCLI03.png" width="600">
-     <img src="./images/Login/Login_GitHubCLI04.png" width="600">
-
-    4. 「Authorize github」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
-     <img src="./images/Login/Login_GitHubCLI05.png" width="600">
-
-    5.以下の画面が表示されたら、GitHub CLIへのログインが完了します。
-  
-      <img src="./images/Login/Login_GitHubCLI06.png" width="600">
+> |<img src="./images/Login/Login_GitHubCLI01.png" width="600">|
+> |---|
+> 2. 画面上の8桁のコードをコピーして、Enterをクリックします。
+> 
+> |<img src="./images/Login/Login_GitHubCLI02.png" width="600">|
+> |---|
+> 3. 「Continue」を押した後、2でコピーした8桁のコードをペーストし、再び「Continue」をクリックします。
+> 
+> |<img src="./images/Login/Login_GitHubCLI03.png" width="600">|
+> |---|
+> |<img src="./images/Login/Login_GitHubCLI04.png" width="600">|
+> 4. 「Authorize github」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+> 
+> |<img src="./images/Login/Login_GitHubCLI05.png" width="600">|
+> |---|
+> 5. 以下の画面が表示されたら、GitHub CLIへのログインが完了します。
+> 
+> |<img src="./images/Login/Login_GitHubCLI06.png" width="600">|
+> |---|
 </details>
 
 <details>
-  <summary>Azure CLIのログイン　</summary>
-  
-  1.以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+<summary>Azure CLIのログイン　</summary>
 
-  <img src="./images/Login/Login_AzureCLI01.png" width="600">
-  
-  2.PowerShellのコンソールが以下の画面になったら、Enterをクリックします。
-  
-  <img src="./images/Login/Login_AzureCLI02.png" width="600">
+> 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+> 
+> |<img src="./images/Login/Login_AzureCLI01.png" width="600">|
+> |---|
+> 2. PowerShellのコンソールが以下の画面になったら、Enterをクリックします。
+> 
+> |<img src="./images/Login/Login_AzureCLI02.png" width="600">|
+> |---|
 </details>
 
 <details>
-  <summary>Azureアカウントへのログイン　</summary>
-  
-  1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+<summary>Azureアカウントへのログイン　</summary>
 
-  <img src="./images/Login/Login_AzureAccount01.png" width="600">
+> 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+> 
+> |<img src="./images/Login/Login_AzureAccount01.png" width="600">|
+> |---|
 </details>
 
 <details>
-  <summary>Microsoft Graphへのログイン　</summary>
-  
-  1. ブラウザが立ち上がり、以下の画面が表示されるため、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+<summary>Microsoft Graphへのログイン　</summary>
 
-  <img src="./images/Login/Login_MicrosoftGraph01.png" width="600">
-
-  2.以下の画面が表示されたら、Microsoft Graphアカウントへのログインは完了です。
-  
-  <img src="./images/Login/Login_MicrosoftGraph02.png" width="600">
+> 1. ブラウザが立ち上がり、以下の画面が表示されるため、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+> 
+> |<img src="./images/Login/Login_MicrosoftGraph01.png" width="600">|
+> |---|
+> 2. 以下の画面が表示されたら、Microsoft Graphアカウントへのログインは完了です。
+> 
+> |<img src="./images/Login/Login_MicrosoftGraph02.png" width="600">|
+> |---|
 </details>
 
 <details>
-  <summary>SharePoint Online管理シェルへのログイン　</summary>
-  
-  1.以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+<summary>SharePoint Online管理シェルへのログイン　</summary>
 
-  <img src="./images/Login/Login_SPOService01.png" width="600">
+> 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
+> 
+> |<img src="./images/Login/Login_SPOService01.png" width="600">|
+> |---|
 </details>
 
-4. **動作確認**
-   数分後、SharePoint Onlineサイトにデータが出力されているか以下の手順で確認します。  
-   データが正しく出力されていない場合は、params.jsonの設定を再確認します。
-   
-   <details>
-   <summary>クリックして手順を表示　</summary>
-     
-   > 1. SharePoint Onlineサイトにアクセスします。  
-   > URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）
-   >
-   > **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
-   > 
-   > 2. 左側のタブから、「ドキュメント」を選択します。
-   > 
-   >|<img src="./images/Access/Access_SharePoint01.png" width="600">|
-   >|---|
-   > 3. M365UsageRecords>・・・(ここは具体的に書く)と選択していき、27日分のExcelファイルがあることを確認します。  
-   > 以上で、データが出力されているかの確認は完了しました。
+### 8. 動作確認
+数分後、SharePoint Onlineサイトにデータが出力されているか以下の手順で確認します。  
+データが正しく出力されていない場合は、params.jsonの設定を再確認します。
 
-   </details>
+<details>
+<summary>クリックして手順を表示　</summary>
+
+> 1. SharePoint Onlineサイトにアクセスします。  
+> URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）
+>   
+> **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
+> 
+> 2. 左側のタブから、「ドキュメント」を選択します。
+> 
+> |<img src="./images/Access/Access_SharePoint01.png" width="600">|
+> |---|
+> 3. M365UsageRecords>・・・(ここは具体的に書く)と選択していき、csvファイルがあることを確認します。  
+</details>
 <br>
 
 ### 手順③: (必要に応じて)アクセス権設定  
