@@ -16,7 +16,7 @@ Microsoft GIGAスクールパッケージ導入後の端末におけるMicrosoft
 - [本プロジェクトについて](#-本プロジェクトについて)
 - [環境構築](#-環境構築)
 - [各レポートの利用方法](#-各レポートの利用方法)
-- [関連情報](#-関連情報)
+- [参考情報](#-参考情報)
 
 <br>
 
@@ -113,8 +113,8 @@ graph BT
 ```
 
 **【レポート画面】**
-|<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="100%">|
-|---------|
+  |<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="100%">|
+  |---------|
 
 <br>
 
@@ -127,34 +127,34 @@ Microsoft 365 のグローバル管理者アカウントが利用可能なテナ
 1. **PC**  
 セットアップ用のコード実行やPower BI Desktopを利用するため、以下の要件を満たすPCを用意します。  
 
-| OS | バージョン |
-|:-|:-|
-| Windows 10 | 22H2以降 |
-| Windows 11 | **★Windows 11での動作確認をする** |
-  
-      
-3. **ネットワーク**  
+    | OS | バージョン |
+    |:-|:-|
+    | Windows 10 | 22H2以降 |
+    | Windows 11 | **★Windows 11での動作確認をする** |
+
+
+2. **ネットワーク**  
 資源のインストールやAPI実行を行うため、インターネット接続ができる環境を用意します。  
   
-4. **Microsoft 365 ライセンス**  
+3. **Microsoft 365 ライセンス**  
 本プロジェクトのレポートを活用するためには、最低でもMicrosoft 365 A1 ライセンスが必要です。  
-また、本プロジェクトが提供するレポートの種別ごとに必要なライセンスが異なります。    
+また、本プロジェクトが提供するレポートの種別ごとに必要なライセンスが異なります。  
   
-| レポート種別 | 必要なライセンス |
-|:-|:-|
-| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | Microsoft 365 A1 |
-| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | Microsoft 365 A1 |
+    | レポート種別 | 必要なライセンス |
+    |:-|:-|
+    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | Microsoft 365 A1 |
+    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | Microsoft 365 A1 |
   
-5. **Microsoft 365 アカウントおよびグループ**  
+4. **Microsoft 365 アカウントおよびグループ**  
 本プロジェクトの可視化テンプレートの利用に際しては、本READMEに従ってMicrosoft 365 のログを蓄積するための環境構築が必要です。  
 環境構築にはMicrosoft 365 のグローバル管理者アカウントが必要となります。  
 また、レポートの種類ごとに以下のアカウントまたはグループが必要となります。  
 **★グループの種類について追記する(セキュリティグループ or icrosoft 365 グループ)**
 
-| レポート種別 | 必要なアカウントまたはグループ |
-|:-|:-|
-| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。 |
-| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。後述する"**M365UsageRecords_site_access_group**"への所属が必要。 |
+    | レポート種別 | 必要なアカウントまたはグループ |
+    |:-|:-|
+    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。 |
+    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | レポートの参照を許可する個別のアカウント。自治体のシステム管理者を想定。後述する"**M365UsageRecords_site_access_group**"への所属が必要。 |
 
 > [!CAUTION]
 > テナント全体のユーザーの利用ログにアクセスするため、教員・児童生徒による本レポートの利用は推奨していません。
@@ -162,16 +162,16 @@ Microsoft 365 のグローバル管理者アカウントが利用可能なテナ
 5. **その他**  
 レポートの種類ごとに、前提となる設定や運用に違いがあります。  
     
-| レポート種別 | 想定利用者 | ログ匿名化設定(※1) | 名簿情報の運用(※2)  |
-|:-|:-|:-|:-|
-| [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | 自治体のシステム管理者 | 有効 or 無効 | 無 |
-| [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | 自治体のシステム管理者 | 無効 | 有 |
+    | レポート種別 | 想定利用者 | ログ匿名化設定(※1) | 名簿情報の運用(※2)  |
+    |:-|:-|:-|:-|
+    | [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md) | 自治体のシステム管理者 | 有効 or 無効 | 無 |
+    | [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)   | 自治体のシステム管理者 | 無効 | 有 |
 
-**※1)ログ匿名化設定**:  
+**※1 ログ匿名化設定**:  
 2021年9月1日以降、Microsoft 365 上の利用状況レポートのユーザー識別情報は既定で匿名化されています。  
 学校毎の利用状況を集計する場合は、[匿名化をオフにする](https://learn.microsoft.com/ja-jp/microsoft-365/troubleshoot/miscellaneous/reports-show-anonymous-user-name#resolution)必要があります。
 
-**※2)名簿情報の運用**:  
+**※2 名簿情報の運用**:  
 学校毎の利用状況を集計する場合は、Microsoft 365 アカウントごとの学校等の所属情報が必要となります。  
 Microsoft 365 テナントによって所属情報の運用方法は異なるため、本プロジェクトでは所属情報の名簿をExcelで作成し、**少なくとも年度ごとに1度は継続的な更新を行っていただく前提としています。**  
 
@@ -228,7 +228,7 @@ winget install --id GitHub.cli
 <details>
 <summary>クリックして手順を表示　</summary>
 
-> 1. ダウンロードしたmsiファイルを実行します。
+> 1. ダウンロードした.msiファイルを実行します。
 > 2. デフォルトの設定から変更せず、「Install」が表示されるまで「Next」をクリックします。  
 > 
 > |![GitHub CLIのインストール01](./images/Install/Install_GitHubCLI01.png)|
@@ -338,7 +338,7 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 > |---|
 </details>
 
-### 4. 新規リポジトリの作成
+### 4. GitHub組織のリポジトリの作成
 <details>
 <summary>クリックして手順を表示　</summary>
 
@@ -374,16 +374,16 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 
 ### 6. 設定ファイルの編集
 ローカルにクローンしたフォルダ内の`params.json`ファイル内の下表の4項目を編集し、上書き保存します。  
-params.jsonファイルは、ms-devaice-usage-report/src/000_setup/params.jsonにあります。
+`params.json`ファイルは、`ms-giga-usage-report/src/000_setup/params.json`に存在します。
 | パラメータ | 設定値 |
 |---------|---------|
-|Organization name| GitHubの組織名を入力します。(3で設定した組織名)|
-|Repository name|作成したGitHub組織のリポジトリ名を入力します。（4で設定したリポジトリ名）|
-|githubAccountName| GitHubアカウント名を入力します。（2で設定したアカウント名）|
-|githubAccountMail|GitHubアカウントに紐づいているメールアドレスを入力します。（2で入力したメールアドレス）|
+|githubOrganizationName| GitHubの組織名を入力します。("3. GitHub組織の作成" で設定した組織名)|
+|githubRepositoryName|作成したGitHub組織のリポジトリ名を入力します。（"4. GitHub組織のリポジトリの作成" で設定したリポジトリ名）|
+|githubAccountName| GitHubアカウント名を入力します。（"2. GitHubアカウントの作成" で設定したアカウント名）|
+|githubAccountMail|GitHubアカウントに紐づいているメールアドレスを入力します。（"2. GitHubアカウントの作成" で入力したメールアドレス）|
 
 
-例) Organization name = "TestOrganization", Repository name = "TestRepository", githubAccountName = "testGithubAccountName", githubAccountMail = "aaa@contoso.com"の場合  
+例) githubOrganizationName="TestOrganization", githubRepositoryName="TestRepository", githubAccountName="testGithubAccountName", githubAccountMail="aaa@contoso.com"の場合  
 
 ```json
 {
@@ -395,10 +395,10 @@ params.jsonファイルは、ms-devaice-usage-report/src/000_setup/params.json�
 ```
 
 ### 7. デプロイスクリプトの実行 
-「5. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした"ms-device-usage-report"フォルダ内の"exec.bat"をダブルクリックで実行します。  
-exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあります。  
-※認証や入力を求められた場合は以下を参考にします。    
-※実行に失敗した場合は、"exec.bat"を再実行します。
+「5. **GitHubリポジトリの内容をローカルにクローン** 」でローカルにコピーした`ms-giga-usage-report`フォルダ内の`exec.bat`をダブルクリックで実行します。  
+`exec.bat`ファイルは、`ms-giga-usage-report/src/000_setup/exec.bat`に存在します。  
+※認証や入力を求められた場合は以下を参考にします。  
+※実行に失敗した場合は、`exec.bat`を再実行します。  
 <details>
 <summary>GitHub CLIへのログイン　</summary>
 
@@ -477,9 +477,8 @@ exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあ�
 <summary>クリックして手順を表示　</summary>
 
 > 1. SharePoint Onlineサイトにアクセスします。  
-> URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）
->   
->   **https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords**
+> URLは以下になります。（`output.json`ファイル内の"siteUrl"に記載）  
+> **「https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords」**
 > 
 > 2. 左側のタブから、「ドキュメント」を選択します。
 > 
@@ -490,21 +489,19 @@ exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあ�
 <br>
 
 ### 9. アクセス権設定  
-> [!NOTE]
-> + 環境構築したユーザー以外がレポートを利用する場合のみ実施する。
-
 これまでの構築作業で、Microsoft 365 の利用ログや現在Entra ID上に登録されているユーザー情報がSharePoint Onlineサイト上に追加されるようになりました。  
 しかし、他のユーザーがPower BIのレポートを閲覧する場合は以下の手順による権限設定が必要です。  
+
+> [!NOTE]
+> + 環境構築したユーザー以外がレポートを利用する場合のみ実施する。
 
 > [!CAUTION]
 > 本グループは、テナントのシステム管理者のみ所属することを前提にしているため、追加したメンバーはMicrosoft 365 テナントのすべてのアカウントの利用ログやユーザー情報を閲覧できる状態になります。  
 > ※Power BIレポート上では学校ごとの集計値のみ表示されていますが、データソースとなるSharePoint Onlineサイトへアクセスすると全ユーザーの利用ログが参照できる状態となります。  
 > そのため、**テナントのシステム管理者のみに対してアクセス権を付与(グループへの追加)することを強く推奨します。**
 
-#### アクセス権設定作業 
-
 <details>
-<summary>クリックして手順を表示　</summary>
+<summary>アクセス権設定作業 　</summary>
 
 > 1.  [Azure Portal](https://portal.azure.com/)にログインします。
 >
@@ -543,17 +540,15 @@ exec.batファイルは、ms-devaice-usage-report/src/000_setup/exec.batにあ�
 ## 📃 各レポートの利用方法
 
 前提条件別に以下のレポートを公開しています。リンク先の手順に従ってそれぞれ利用方法を確認します。
-
-1. [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)
-2. [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)  
+- [010_テナントの利用状況可視化サンプル](./src/010_テナントの利用状況可視化サンプル/README.md)
+- [020_学校毎の利用状況可視化サンプル](./src/020_学校毎の利用状況可視化サンプル/README.md)  
 ※利用のためには各Microsot 365 IDがどの学校に所属しているのかを示す名簿ファイルの作成が必要
 
 <br>
 
-## 📚 関連情報
+## 📚 参考情報
 
 本プロジェクトに関連するドキュメントはこちらです。
-
 - [GIGA スクール構想の実現 学習者用コンピュータ最低スペック基準の一部訂正について（依頼）](https://www.mext.go.jp/content/20240201-mxt_shuukyo01-000033777_01.pdf)
 - [Microsoft 365 レポートに実際のユーザー名ではなく匿名のユーザー名が表示される -Microsoft 365](https://learn.microsoft.com/ja-jp/microsoft-365/troubleshoot/miscellaneous/reports-show-anonymous-user-name#resolution)
 - [Git for Windows](https://gitforwindows.org/)
