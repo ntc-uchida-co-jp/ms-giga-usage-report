@@ -109,7 +109,7 @@ graph BT
 ```
 
 **【レポート画面】**
-  |<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="100%">|
+  |<img src="./images/Report_010.png" width="100%">|
   |---------|
 
 <br>
