@@ -301,7 +301,8 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 </details>
 
 ### 3. GitHub組織の作成
-すでに使用する組織を作成している場合は、4に移動します。
+環境構築を行うために、GitHubアカウントと紐づくGitHub組織を作成します。  
+
 <details>
 <summary>クリックして手順を表示　</summary>
 
@@ -334,6 +335,8 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 </details>
 
 ### 4. GitHub組織のリポジトリの作成
+日次でMicrosoft 365 の利用ログの収集やSharePoint Online サイトへのデータアップロードを行うためのGitHub Actionsワークフローを動かすために、GitHubリポジトリの作成を行います。 
+
 <details>
 <summary>クリックして手順を表示　</summary>
 
@@ -360,9 +363,8 @@ Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -Wait
 
 ### 5.  **GitHubリポジトリの内容をローカルにクローン**  
 PowerShellで次のコマンドを任意の場所で実行します。
-
 ```shell
-git clone https://github.com/{~}/ms-device-usage-report.git
+git clone https://github.com/{~}/ms-giga-usage-report.git
 ``` 
 
 ### 6. 設定ファイルの編集
@@ -392,9 +394,11 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 `exec.bat`ファイルは、`ms-giga-usage-report/src/000_setup/exec.bat`に存在します。  
 ※認証や入力を求められた場合は以下を参考にします。  
 ※実行に失敗した場合は、`exec.bat`を再実行します。  
-<details>
-<summary>GitHub CLIへのログイン　</summary>
 
+<details>
+<summary>クリックして手順を表示　</summary>
+
+> - GitHub Cliへのログイン
 > 1. PowerShellに以下の画面が表示されたら、Enterをクリックします。
 > 
 > |<img src="./images/Login/Login_GitHubCLI01.png" width="600">|
@@ -416,11 +420,8 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 > 
 > |<img src="./images/Login/Login_GitHubCLI06.png" width="600">|
 > |---|
-</details>
-
-<details>
-<summary>Azure CLIのログイン　</summary>
-
+> 
+> - Azureアカウントへのログイン
 > 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
 > 
 > |<img src="./images/Login/Login_AzureCLI01.png" width="600">|
@@ -429,20 +430,8 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 > 
 > |<img src="./images/Login/Login_AzureCLI02.png" width="600">|
 > |---|
-</details>
-
-<details>
-<summary>Azureアカウントへのログイン　</summary>
-
-> 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択し、「Continue」をクリックします。その後、パスワードの入力が求められた場合は、パスワードを入力します。
 > 
-> |<img src="./images/Login/Login_AzureAccount01.png" width="600">|
-> |---|
-</details>
-
-<details>
-<summary>Microsoft Graphへのログイン　</summary>
-
+> - Microsoft Graphへのログイン
 > 1. ブラウザが立ち上がり、以下の画面が表示されるため、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
 > 
 > |<img src="./images/Login/Login_MicrosoftGraph01.png" width="600">|
@@ -451,20 +440,18 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 > 
 > |<img src="./images/Login/Login_MicrosoftGraph02.png" width="600">|
 > |---|
-</details>
-
-<details>
-<summary>SharePoint Online管理シェルへのログイン　</summary>
-
+>
+> - SharePoint Online管理シェルへのログイン
 > 1. 以下のポップアップが表示されたら、自分のMicrosoftアカウントを選択します。その後、パスワードの入力が求められた場合は、パスワードを入力します。
 > 
 > |<img src="./images/Login/Login_SPOService01.png" width="600">|
 > |---|
 </details>
 
+
 ### 8. 動作確認
-数分後、SharePoint Onlineサイトにデータが出力されているか以下の手順で確認します。  
-データが正しく出力されていない場合は、params.jsonの設定を再確認します。
+SharePoint Online サイトにMicrosoft 365 利用ログが出力されているかを以下の手順で確認します。  
+データが正しく出力されていない場合は、`params.json`の設定を再確認します。
 
 <details>
 <summary>クリックして手順を表示　</summary>
@@ -477,12 +464,14 @@ git clone https://github.com/{~}/ms-device-usage-report.git
 > 
 > |<img src="./images/Access/Access_SharePoint01.png" width="600">|
 > |---|
-> 3. M365UsageRecords>・・・(ここは具体的に書く)と選択していき、csvファイルがあることを確認します。  
+> 3. 「**M365UsageRecords/M365UsageReports/{"Concealed" or "UnConcealed"}/M365AppUserDetail/school_year={現在の年度}**」
+> を確認し、csvファイルが存在することを確認します。  
 </details>
 
 ### 9. アクセス権設定  
 これまでの構築作業で、Microsoft 365 の利用ログや現在Entra ID上に登録されているユーザー情報がSharePoint Onlineサイト上に追加されるようになりました。  
 しかし、他のユーザーがPower BIのレポートを閲覧する場合は以下の手順による権限設定が必要です。  
+
 <details>
 <summary>アクセス権設定作業 　</summary>
 
