@@ -232,7 +232,7 @@ Pull Requestはいつでも歓迎しています。
 GitHub Actionsのワークフローを定義する.ymlファイルを保管。
 - docs  
 →不要？
-- images
+- images  
 同じ階層のMarkdownファイルで用いられている画像を保管する。  
 - src/00_setup  
 初期設定のためのスクリプト等を保管する。
