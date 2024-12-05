@@ -112,11 +112,132 @@ Pull Requestはいつでも歓迎しています。
 本プロジェクトでは以下のようなディレクトリ構造となっています。
 
 ```
-└── ...
+.
+└── ms-giga-usage-report/
+    ├── .github/
+    │   ├── ISSUE_TEMPLATE/
+    │   │   ├── bug_report.md
+    │   │   ├── feature_request.md
+    │   │   ├── other.md
+    │   │   └── question.md
+    │   ├── workflows/
+    │   │   ├── CI.yml
+    │   │   ├── daily_workflow.yml
+    │   │   ├── manual_workflow.yml
+    │   │   └── release-drafter.yml
+    │   ├── CODE_OF_CONDUCT.md
+    │   ├── PULL_REQUEST_TEMPLATE.md
+    │   └── release-drafter.yml
+    ├── docs/
+    │   └── ~.md
+    ├── images/
+    │   └── ~.png
+    ├── src/
+    │   ├── 000_setup/
+    │   │   ├── 01_Install-Module/
+    │   │   │   └── Install-Module.ps1
+    │   │   ├── 02_Copy-GitHub/
+    │   │   │   └── Copy-GitHub.ps1
+    │   │   ├── 03_Create-EntraIDApplication/
+    │   │   │   └── Create-EntraIdApplication.ps1
+    │   │   ├── 04_Create-EntraIDGroup/
+    │   │   │   └── Create-EntraIdGroup.ps1
+    │   │   ├── 05_Create-SharePointSite/
+    │   │   │   └── Create-SharepointSite.ps1
+    │   │   ├── 06_Exec-GitHubActions/
+    │   │   │   └── Exec-GitHubActions.ps1
+    │   │   ├── deploy1.ps1
+    │   │   ├── deploy2.ps1
+    │   │   ├── exec.bat
+    │   │   ├── outputs.json
+    │   │   └── params.json
+    │   ├── 010_テナントの利用状況可視化サンプル/
+    │   │   ├── images/
+    │   │   │   └── ~.jpg
+    │   |   ├── 01_テナント全体の端末利用状況レポート.pbit
+    │   │   └── README.md
+    │   └── 020_学校毎の利用状況可視化サンプル/
+    │       ├── images/
+    │       │   └── ~.png
+    │       ├── 名簿サンプル/
+    │       │   └── 2024-04-01_M365名簿.xlsx
+    │       ├── 02_学校別の端末利用状況レポート.pbit
+    │       └── README.md
+    ├── .yamllint
+    ├── CODEOWNERS
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    ├── README.md
+    └── SECURITY.md
+```
+```
+.
+└── ms-giga-usage-report-main/
+    ├── .github/
+    │   ├── ISSUE_TEMPLATE/
+    │   │   ├── bug_report.md
+    │   │   ├── feature_request.md
+    │   │   ├── other.md
+    │   │   └── question.md
+    │   ├── workflows/
+    │   │   ├── CI.yml
+    │   │   ├── daily_workflow.yml
+    │   │   ├── manual_workflow.yml
+    │   │   └── release-drafter.yml
+    │   ├── CODE_OF_CONDUCT.md
+    │   ├── PULL_REQUEST_TEMPLATE.md
+    │   └── release-drafter.yml
+    ├── docs/
+    │   └── tmp.md
+    ├── images/
+    │   ├── Microsoft365_logo_horiz_c-gray_rgb.png
+    │   └── WIN22_Windows11_logo_horiz_blue_cmyk.png
+    ├── src/
+    │   ├── 00_setup/
+    │   │   ├── .ps1/
+    │   │   │   ├── deploy1.ps1
+    │   │   │   ├── deploy2.ps1
+    │   │   │   ├── 01_Install-Module.ps1
+    │   │   │   ├── 02_Copy-GitHub.ps1
+    │   │   │   ├── 03_Create-EntraIdApplication.ps1
+    │   │   │   ├── 04_Create-EntraIdGroup.ps1
+    │   │   │   ├── 05_Create-SharepointSite.ps1
+    │   │   │   └── 06_Exec-GitHubActions.ps1
+    │   │   ├── exec.bat
+    │   │   ├── outputs.json
+    │   │   └── params.json
+    │   ├── 10_テナントの利用状況可視化サンプル/
+    │   │   ├── images/
+    │   │   │   └── ~.jpg
+    │   │   ├── テナント全体の端末利用状況レポート.pbit
+    │   │   └── README.md
+    │   └── 20_学校毎の利用状況可視化サンプル/
+    │       ├── images/
+    │       │   └── ~.png
+    │       ├── 名簿サンプル/
+    │       │   └── 2024-04-01_M365名簿.xlsx
+    │       ├── 学校別の端末利用状況レポート.pbit
+    │       └── README.md
+    ├── .yamllint
+    ├── CODEOWNERS
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    ├── README.md
+    └── SECURITY.md
 ```
 
 
 **各ディレクトリについて説明を記載する**
-- aaa  
-- bbb  
-...
+- .github/workflows  
+GitHub Actionsのワークフローを定義する.ymlファイルを保管。
+- docs  
+→不要？
+- images  
+同じ階層のMarkdownファイルで用いられている画像を保管する。  
+- src/00_setup  
+初期設定のためのスクリプト等を保管する。
+- src/10_テナントの利用状況可視化サンプル  
+"10_テナントの利用状況可視化サンプル"に関するドキュメントやpbitファイルを保管する。
+- src/20_学校毎の利用状況可視化サンプル  
+"20_学校毎の利用状況可視化サンプル"に関するドキュメントやpbitファイルを保管する。
+

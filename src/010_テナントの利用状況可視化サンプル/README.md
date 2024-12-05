@@ -25,12 +25,88 @@ Microsoft 365 テナント全体の利用状況可視化サンプルのPBITフ�
 利用日数に応じて区分された利用人数および利用率を集計します。
 
 **【システム構成図】**
-|<img src="https://github.com/ucd-tcc/ms-device-usage-report/blob/tachizawa_umeReadme20241107/010_%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%AE%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E5%8F%AF%E8%A6%96%E5%8C%96%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB/images/System_Configuration_Diagram.jpg" width="1000">|
+```mermaid
+graph BT
+    subgraph Microsoft365 ["<div style='font-size:24px;'><b>Microsoft 365</b></div>"]
+        usageReport["<div style='text-align: left;'><b>利用状況レポート</b><br>日毎のMicrosoft 365 の<br>利用結果データ</div>"]
+        style usageReport fill:#F6F8FA,stroke:#565656,stroke-width:1px,color:#565656
+
+        usageReportSetting["<div style='text-align: left;'><b>利用状況レポートの<br>匿名化設定</b></div>"]
+        style usageReportSetting fill:#F6F8FA,stroke:#565656,stroke-width:1px,color:#565656
+
+        UserData["<div style='text-align: left;'><b>Entra ID ユーザー情報</b></div>"]
+        style UserData fill:#F6F8FA,stroke:#565656,stroke-width:1px,color:#565656
+
+        subgraph SharePoint ["<b>SharePoint Online</b>"]
+            usageRecords[("<div style='text-align: left;'><b>M365UsageRecords</b><br>利用状況レポート等の<br>データを保存</div>")]
+            style usageRecords fill:#F6F8FA,stroke:#565656,stroke-width:1px,color:#565656
+        end
+        style SharePoint fill:#14858d,stroke:#565656,stroke-width:2px,color:#fff
+
+        subgraph PowerBIService ["<b>Power BI サービス</b>"]
+            powerBIReport["<div style='text-align: left;'><b>Power BI レポート</b><br>レポートを表示し<br>データを自動更新</div>"]
+            style powerBIReport fill:#F6F8FA,stroke:#565656,stroke-width:1px,color:#565656
+        end
+        style PowerBIService fill:#e8b41b,stroke:#565656,stroke-width:2px,color:#fff
+
+    end
+    style Microsoft365 fill:#E5F1FB,stroke:#565656,stroke-width:2px,color:#565656
+
+    subgraph GitHub ["<div style='font-size:24px;'><b>GitHub</b></div>"]
+        subgraph githubRepo ["<b>GitHub リポジトリ</b>"]
+            githubActions["<div style='text-align: left;'><b>GitHub Actions</b><br>・利用状況レポート等の<br>　データ取得<br>・SharePoint Onlineサイト<br>　へのデータ自動保存</div>"]
+            style githubActions fill:#F6F8FA,stroke:#565656,stroke-width:1px,stroke-dasharray:8,color:#565656
+        end
+        style githubRepo fill:#F6F8FA,stroke:#565656,stroke-width:2px,color:#565656
+    end
+    style GitHub fill:#848F9C,stroke:#565656,stroke-width:2px,color:#fff
+
+    user["<div style='text-align: left;'><b>レポート利用者</b><br>Power BI レポートを利用</div>"]
+    style user fill:#565656,stroke:#565656,stroke-width:2px,color:#fff
+
+    GitHub -->|データを取得| usageReport
+    GitHub -->|データを取得| usageReportSetting
+    GitHub -->|データを取得| UserData
+    GitHub -->|データを保存| usageRecords
+    powerBIReport -->|データを参照| usageRecords
+    user -->|レポートを閲覧| powerBIReport
+    linkStyle 0 stroke:#565656, stroke-width:1.5px;
+    linkStyle 1 stroke:#565656, stroke-width:1.5px;
+    linkStyle 2 stroke:#565656, stroke-width:1.5px;
+    linkStyle 3 stroke:#565656, stroke-width:1.5px;
+    linkStyle 4 stroke:#565656, stroke-width:1.5px;
+    linkStyle 5 stroke:#565656, stroke-width:1.5px;
+```
+
+**【レポート画面】　★残対応有り　画像差し替え？**
+
+|<img src="images/Report_010_Explanation.jpg" width="600">|
 |---------|
 
-**【レポート画面】**
-|<img src="https://github.com/user-attachments/assets/ef67bcaa-eb5f-47bd-859e-0b65edd0ffe4" width="600">|
-|---------|
+画像の番号ごとにレポートの概要を説明します。
+
+| 番号 | 概要 |
+|---------|---------|
+| ① | 集計対象の年度を選択します。複数選択も可能です。 |
+| ② | 集計対象のデータ期間を表します。 |
+| ③ | 集計期間において、利用頻度ごとに利用人数を集計します。 |
+| ④ | 利用頻度毎の利用人数を月別に表示します。 |
+| ⑤ | 利用頻度毎の利用人数を機能（アプリ）別に表示します。 |
+| ⑥ | 利用頻度毎の利用人数を週別に表示します。 |
+| ⑦ | 表示しているデータについて、補足や留意事項を記載しています。 |
+
+集計に利用している利用頻度は以下のように定義しています。
+| 利用頻度 | 説明 |
+|---------|---------|
+| 週 5 日以上 | 集計期間の日数のうち、5/7 以上利用している |
+| 週 3 日以上 | 集計期間の日数のうち、3/7 以上・5/7 未満利用している |
+| 週 1 日以上 | 集計期間の日数のうち、1/7 以上・3/7 未満利用している |
+| 月 1 日以上 | 集計期間の日数のうち、12/365 以上・1/7 未満利用している |
+| 月 1 日未満 | 集計期間の日数のうち、12/365 未満利用している、または利用していない<br>※利用していない人数には、Microsoft 365 上に存在する有効なアカウントをすべて含みます。 |
+
+> [!NOTE]
+> + 新入生および卒業生は、在籍期間を対象として利用頻度が集計されます。
+> + 利用人数の総数は、選択年度に有効だった一意のMicrosoft 365 アカウント数から算出しています。
 
 ## ✅ 前提条件
 
@@ -47,9 +123,17 @@ Microsoft 365 テナント全体の利用状況可視化サンプルを使用す
 
 4. **Power BI Desktop のインストール**  
    PCに Power BI Desktop がインストールされていることを確認してください。  
-   インストールにはPCの管理者権限が必要になる場合があります。  
-   詳細は[こちら（Power BI Desktop の取得 - Power BI | Microsoft Learn）](https://learn.microsoft.com/ja-jp/power-bi/fundamentals/desktop-get-the-desktop)の手順に従ってください。
-   
+   詳細は[こちら（Power BI Desktop の取得 - Power BI | Microsoft Learn）](https://learn.microsoft.com/ja-jp/power-bi/fundamentals/desktop-get-the-desktop)の手順に従ってください。  
+
+> [!IMPORTANT]
+> + インストールのための [最小要件（Power BI Desktop の取得 - Power BI | Microsoft Learn）](https://learn.microsoft.com/ja-jp/power-bi/fundamentals/desktop-get-the-desktop#minimum-requirements) を確認して下さい。
+> + 端末のメモリ (RAM) が 4 GB 以下だと動作しない可能性があります。
+
+> [!NOTE]
+> + Power BI Desktop のインストールにはPCの管理者権限が必要になる場合があります。
+> + Power BI Desktop の起動後、「WebView2に問題があります」と表示された場合は以下のMicrosoft Learnを参考にしてください。
+>   [Power BI Desktop の起動に関する問題を解決する - Power BI | Microsoft Learn](https://learn.microsoft.com/ja-jp/power-bi/connect-data/desktop-error-launching-desktop)
+
 6. **データソースへのアクセス権**  
    SharePoint Online サイト上のデータソースへのアクセス権限を持っていることを確認してください。
 
@@ -59,18 +143,96 @@ Microsoft 365 テナント全体の利用状況可視化サンプルを使用す
 
 レポートを利用開始するために、以下の手順でテンプレートをダウンロードできます。
 
-1. [本件のマスタリポジトリ](https://github.com/ucd-tcc/ms-device-usage-report/tree/main/010_%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%AE%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E5%8F%AF%E8%A6%96%E5%8C%96%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB/pbit) にアクセスし、対象のPBITファイルをダウンロードします。
+<details>
+<summary>　クリックして詳細表示　★残対応有り</summary>
 
-### 2. Power BI サービスの初回利用設定
+> 1. [本件のマスタリポジトリ](01_テナント全体の端末利用状況レポート.pbit) にアクセスし、対象のPBITファイルをダウンロードします。★本番環境が出来てから 画像とリンクを調整
 
-初回利用時には、Power BI サービスで「Microsoft Fabric Free」ライセンスを有効にする必要があります。
+</details>
 
-1. Power BI サービスにサインインします。
-2. サービス画面上の指示に従い、「Microsoft Fabric Free」ライセンスを開始します。
-   |<img src="https://github.com/user-attachments/assets/ab8c661a-f4e4-4b51-b655-56d98bb336b8" width="600">|
-   |---------|
+### 2. Power BI Desktop へのサインイン
 
-4. 設定完了後、Power BI サービスの機能を利用できるようになります。
+初回利用時には、Power BI Desktop にサインインする必要があります。
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. Windows のスタートメニューから、Power BI Desktop を起動します。  
+>    + 起動後にサインインを求められた場合は、手順4 に進んでください。
+> 
+> 2. 画面左下の [サインイン] をクリックします。
+> 
+> |<img src="images/SignIn_Power_BI_Desktop.jpg" width="600">|
+> |---------|
+> 
+> 3. 画面表示に従い、Microsoft 365 アカウントのメールアドレスを入力します。
+> 
+> |<img src="images/SignIn_Power_BI_Desktop_2.jpg" width="600">|
+> |---------|
+> 
+> 4. ご自身のMicrosoft 365 アカウントでサインインします。
+> 
+> |<img src="images/SignIn_Power_BI_Desktop_3.jpg" width="600">|
+> |---------|
+> 
+> 5. Power BI Desktop の画面右上に、ご自身のアカウント名が表示されていることを確認します。
+> 
+> |<img src="images/SignIn_Power_BI_Desktop_4.jpg" width="600">|
+> |---------| 
+> 
+> 6. Power BI Desktop の画面は利用しないため、閉じて構いません。
+
+</details>
+
+### 3. Power BI サービスへのサインイン
+
+初回利用時には、Power BI サービスにサインインする必要があります。
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. 以下のWebページにアクセスします。  
+>    [始める | Microsoft Power BI](https://www.microsoft.com/ja-jp/power-platform/products/power-bi/getting-started-with-power-bi)
+> 
+> 2. 右上の [サインイン] からPower BI サービスにサインインします。  
+> 
+> |<img src="images/SignIn_Power_BI_Service.jpg" width="600">|
+> |---------|
+> 
+> 3. 画面の指示に従いメールアドレスを入力して [送信] します。
+> 
+> |<img src="images/SignIn_Power_BI_Service_2.jpg" width="600">|
+> |---------|
+> |<img src="images/SignIn_Power_BI_Service_3.jpg" width="600">|
+
+</details>
+
+### 4. 「Microsoft Fabric Free」ライセンスの有効化
+
+Microsoft 365 A1 / A3 ライセンスの場合は、「Microsoft Fabric Free」ライセンスを有効化する必要があります。
+
+> [!NOTE]
+> + Microsoft 365 A5 ライセンスには「Power BI Pro」ライセンスが含まれるため、こちらの手順は不要です。
+> + 詳細手順のような画面が表示されない場合もこちらの手順は不要です。
+> + Microsoft Fabric の「無料試用版」を有効化する必要はありません。
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. サービス画面上の指示に従い、「Microsoft Fabric Free」ライセンスを開始します。
+> 
+> |<img src="images/Setup_Fabric_Free.jpg" width="600">|
+> |---------|
+> |<img src="images/Setup_Fabric_Free_2.jpg" width="600">|
+> |<img src="images/Setup_Fabric_Free_3.jpg" width="600">|
+> 
+> 2. Power BI サービスが開きます。右上の「人アイコン」をクリックし、  
+>    「ライセンスの種類：無料アカウント」と表示されていることを確認します。
+> 
+> |<img src="images/Setup_Fabric_Free_4.jpg" width="600">|
+> |---------|
+
+</details>
 
 ## 📝 利用開始手順
 
@@ -78,92 +240,218 @@ Microsoft 365 テナント全体の利用状況可視化サンプルを使用す
 
 以下の手順に従い、テンプレートをPower BI Desktop で開きます。
 
-1. 事前準備でダウンロードしたPBITファイルをダブルクリックし、Power BI Desktop で開きます。
-2. サインインを求められたら、自身のMicrosoft 365 アカウントでサインインします。
-   |<img src="https://github.com/ucd-tcc/ms-device-usage-report/blob/f965455312381d76114e2ed159be5217a0fe94b1/010_%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%AE%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E5%8F%AF%E8%A6%96%E5%8C%96%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB/images/Power_BI_Desktop_SignIn.jpg" width="600">|
-   |---------|
+> [!NOTE]
+> + 不具合が生じた場合は「[前提条件](#-前提条件)　Power BI Desktop のインストール」を参照してください。
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. 事前準備でダウンロードしたPBITファイルをダブルクリックし、Power BI Desktop で開きます。  
+> 
+> |<img src="images/Open_Template_File.jpg" width="600">|
+> |---------|
+
+</details>
 
 ### 2. パラメータの設定とデータソースの設定
 
 テンプレートを設定しデータソースに接続できるようにします。
 
-1. PBITファイルを開くと、以下のパラメータ設定を求められます。以下の情報を入力してください。
-   | パラメータ | 設定値 |
-   |---------|---------|
-   |SiteUrl|[https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords/](https://{テナントドメイン}.sharepoint.com/sites/M365UsageRecords/)|
-   |SchoolYearRange|3|
-   
-   - **SiteUrl**：データソースファイルが格納されているSharePoint Online サイトのURLを入力します。  
-   - **SchoolYearRange**：取得するデータ期間の年度数を1以上の整数で入力します。  
-     ※本システム運用開始以前のデータは取得できません。  
-     ※システムの性能の都合上、上限は 9 を目安に設定して下さい。
-     |<img src="https://github.com/user-attachments/assets/2fd5b4ee-2db1-4867-bb79-17bffe8bfd75" width="600">|
-     |---------|
+<details>
+<summary>　クリックして詳細表示</summary>
 
-### 3. マイワークスペースへの発行
+> 1. PBITファイルを開くと、以下のパラメータ設定を求められます。以下の情報を入力してください。
+> 
+> | パラメータ | 設定値 |
+> |---------|---------|
+> |SiteUrl| 利用者環境リポジトリ内の [outputs.json](../000_setup/outputs.json) に記載されている [siteUrl] の値|
+> |SchoolYearRange|3|
+> 
+> - **SiteUrl**：データソースファイルが格納されているSharePoint Online サイトのURLを入力します。  
+> - **SchoolYearRange**：取得するデータ期間の年度数を1以上の整数で入力します。  
+>  ※ここでは「SchoolYearRange」を既定の 3 に設定します。   
+>  ※本システム運用開始時点では、開始日より約26日前のデータから読み込まれます。
+> 
+> |<img src="images/Setup_Parameters.jpg" width="600">|
+> |---------|
+> 
+> 2. データソースの資格情報設定を求められます。 [Microsoft アカウント] > [サインイン] をクリックし、サインインします。
+> 
+> |<img src="images/Setup_Parameters_2.jpg" width="600">|
+> |---------|
+> |<img src="images/Setup_Parameters_3.jpg" width="600">|
+> |<img src="images/Setup_Parameters_4.jpg" width="600">|
+> 
+> 3. サインインが完了したら、 [接続] をクリックします。
+> 
+> |<img src="images/Setup_Parameters_5.jpg" width="600">|
+> |---------|
+> 
+> 4. 数分待つとレポート画面が表示されます。  
+> 
+> |<img src="images/Setup_Parameters_6.jpg" width="600">|
+> |---------|
 
-ブラウザでレポートを閲覧するために、Power BI サービスのマイワークスペースにレポートを発行します。
+</details>
 
-1. Power BI Desktop でレポートが完成したら、レポートファイルを保存します。
-2. 「発行」を選択し、マイワークスペースに発行します。
+### 3. レポートの保存
 
-   |<img src="https://github.com/user-attachments/assets/3cd4f1b8-727d-4690-b26d-b5fe35cce803" width="600">|
-   |---------|
+レポートを保存します。
 
-### 4. データソース資格情報の設定
+<details>
+<summary>　クリックして詳細表示</summary>
 
-マイワークスペースに発行後、Power BI サービスでデータソースにアクセスするために資格情報を設定する必要があります。  
+> 1. [ファイル] タブをクリックします。
+> 
+> |<img src="images/Save_Report.jpg" width="600">|
+> |---------|
+> 
+> 2.  [名前を付けて保存] > [このデバイスを参照する] をクリックします。
+> 
+> |<img src="images/Save_Report_2.jpg" width="600">|
+> |---------|
+> 
+> 3.  ファイル名を入力し、適当な保存場所を選択して [保存] をクリックします。
+> 
+> | 設定項目 | 設定値 |
+> |---------|---------|
+> |ファイル名|01_テナント全体の端末利用状況レポート|
+> |ファイルの種類|Power BI ファイル (*.pbix)|
+> 
+> |<img src="images/Save_Report_3.jpg" width="600">|
+> |---------|
+
+</details>
+
+### 4. マイワークスペースへの発行
+
+ブラウザでレポートを閲覧するために、Power BI サービスのマイワークスペースにレポートを発行します。  
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. [ホーム] タブから [発行] をクリックします。
+> 
+> |<img src="images/Publish_Report.jpg" width="600">|
+> |---------|
+> 
+> 2. 「マイワークスペース」を選択し、 [選択] をクリックして発行を開始します。
+> 
+> |<img src="images/Publish_Report_2.jpg" width="600">|
+> |---------|
+> 
+> 3. 発行が完了したら、 [Power BI で '01_テナント全体の端末利用状況レポート' を開く] をクリックします。
+> 
+> |<img src="images/Publish_Report_3.jpg" width="600">|
+> |---------|
+> 
+> 4. ブラウザが立ち上がり、Power BI サービスでレポートが開かれることを確認します。
+> 
+> |<img src="images/Publish_Report_4.jpg" width="600">|
+> |---------|
+
+</details>
+
+### 5. データソース資格情報の設定
+
+マイワークスペースに発行後、Power BI サービスからデータを更新するために資格情報を設定する必要があります。  
 以下の手順に従って設定してください。
 
-1. Power BI サービスにサインインし、マイワークスペースを開きます。
-2. 発行したセマンティックモデルを選択します。
-3. [・・・] > [設定] > [データソースの資格情報] セクションから設定を行い、設定を保存します。
+<details>
+<summary>　クリックして詳細表示</summary>
 
-   |<img src="https://github.com/user-attachments/assets/5e02ffd0-0174-4fda-81bf-78020d9f787d" width="600">|
-   |---------|
+> 1. Power BI サービスの左側メニューから [マイワークスペース] を選択します。
+> 
+> |<img src="images/Configure_DataSource_Credentials.jpg" width="600">|
+> |---------|
+> 
+> 2. 発行したセマンティックモデルの [・・・] > [設定] をクリックし、設定画面を開きます。
+> 
+> |<img src="images/Configure_DataSource_Credentials_2.jpg" width="600">|
+> |---------|
+> 
+> 3. [データソースの資格情報] セクションの [資格情報を編集] をクリックします。
+> 
+> |<img src="images/Configure_DataSource_Credentials_3.jpg" width="600">|
+> |---------|
+> 
+> 4. 設定項目を以下に設定し [サインイン] をクリックします。
+> 
+> | 設定項目 | 設定値 |
+> |---------|---------|
+> |認証方法|OAuth2|
+> |このデータ ソースのプライバシー レベルの設定|Private|
+> 
+> |<img src="images/Configure_DataSource_Credentials_4.jpg" width="600">|
+> |---------|
+> 
+> 5. 自身のアカウントをクリックします。
+> 
+> |<img src="images/Configure_DataSource_Credentials_5.jpg" width="600">|
+> |---------|
+> 
+> 6. 資格情報が設定されます。次の手順で引き続き設定を行うため、設定画面はそのまま開いておきます。
+> 
+> |<img src="images/Configure_DataSource_Credentials_6.jpg" width="600">|
+> |---------|
 
-   |<img src="https://github.com/user-attachments/assets/1a0adb9e-a311-4f32-98e0-1ae6675bc8c8" width="600">|
-   |---------|
-
-   |<img src="https://github.com/user-attachments/assets/1900c21f-c4d5-4798-acf8-663329a717b0" width="300">|
-   |---------|
-
-4. 資格情報が設定されると、Power BI サービスでの自動更新や手動更新が可能となります。
-
-### 5. データ取得の動作確認
-
-Power BI サービスでデータの手動更新を行い、データ取得の動作確認を実施します。  
-
-1. マイワークスペースを開きます。
-2. データソースの資格情報を設定したセマンティックモデルを選択します。
-3. マウスオーバーすると名称の右に表示される更新マーク（🔄）から手動更新します。
-4. 「最新の情報に更新済み」の日時が更新されたら完了です。  
-   ※3年度分のデータを取得する場合、更新完了まで15分程度かかります。
-   |<img src="https://github.com/user-attachments/assets/a4d7b6eb-a3a6-4f38-8167-3b592c7c7ebe" width="600">|
-   |---------|
+</details>
 
 ### 6. データの自動更新設定
 
 レポートで最新の情報を確認するためにデータの自動更新を設定する必要があります。  
 以下の手順に従って設定してください。
 
-1. マイワークスペースを開きます。
-2. データソースの資格情報を設定したセマンティックモデルを選択します。
-3. [・・・] > [設定] > [最新の情報に更新] セクションからスケジュール設定を行います。設定値は以下を参照してください。
-   | 設定項目 | 設定値 |
-   |---------|---------|
-   |タイムゾーン|(UTC+09:00)大阪、札幌、東京|
-   |情報更新スケジュールを構成|オン|
-   |更新の頻度|毎日|
-   |時刻|12:00PM|
+> [!NOTE]
+> + データ蓄積機能で最新データを取得するタイミングに合わせたスケジュール設定になります。
 
-   ※データ蓄積機能で最新データを取得するタイミングに合わせたスケジュール設定になります。
+<details>
+<summary>　クリックして詳細表示</summary>
 
-   |<img src="https://github.com/user-attachments/assets/5e02ffd0-0174-4fda-81bf-78020d9f787d" width="600">|
-   |---------|
+> 1. （前の手順に引き続き、）セマンティックモデルの設定画面を開きます。
+> 2. [最新の情報に更新] セクションからスケジュール設定を行います。設定値は以下を参照してください。
+> 
+> | 設定項目 | 設定値 |
+> |---------|---------|
+> |タイムゾーン|(UTC+09:00)大阪、札幌、東京|
+> |情報更新スケジュールの構成|オン|
+> |更新の頻度|毎日|
+> |時刻|12:00PM|
+> 
+> |<img src="images/Configure_Scheduled_Refresh.jpg" width="600">|
+> |---------|
+> 
+> 3. [適用] をクリックして、設定を保存します。
+> 
+> |<img src="images/Configure_Scheduled_Refresh_2.jpg" width="600">|
+> |---------|
 
-   |<img src="https://github.com/user-attachments/assets/b3571550-f59a-4dfa-91f7-58323ec5c4ef" width="600">|
-   |---------|
+</details>
+
+### 7. データ取得の動作確認
+
+Power BI サービスでデータの手動更新を行い、データ取得の動作確認を実施します。  
+
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. マイワークスペースを開きます。
+> 
+> |<img src="images/Refresh_SemanticModel.jpg" width="600">|
+> |---------|
+> 
+> 2. データソースの資格情報を設定したセマンティックモデルを選択し、更新マーク（🔄）をクリックします。
+> 
+> |<img src="images/Refresh_SemanticModel_2.jpg" width="600">|
+> |---------|
+> 
+> 4. 「最新の情報に更新済み」の日時が更新されたら完了です。  
+>    ※本システムの運用開始時点の場合は数分で完了します。1年度分のデータが蓄積されている場合は5~10分ほどかかります。
+> 
+> |<img src="images/Refresh_SemanticModel_3.jpg" width="600">|
+> |---------|
+
+</details>
 
 ## 🔄 取得データ期間の変更方法
 
@@ -171,43 +459,43 @@ Power BI サービスでデータの手動更新を行い、データ取得の�
 
 マイワークスペースに発行後、取得するデータ期間の年度数を変更する場合は、以下の手順に従って設定してください。
 
-1. Power BI サービスにサインインし、マイワークスペースを開きます。
-2. 発行したセマンティックモデルを選択します。
-3. [・・・] > [設定] > [パラメーター] セクションを開きます。
-4. SchoolYearRange を任意の値に変更し、適用して設定を保存します。
-   |<img src="https://github.com/user-attachments/assets/5e02ffd0-0174-4fda-81bf-78020d9f787d" width="600">|
-   |---------|
-   
-   |<img src="https://github.com/user-attachments/assets/12e1ee35-0784-4d11-be53-c59ce1ca4afe" width="600">|
-   |---------|
+> [!NOTE]
+> + データ期間の年度数は「3」を推奨値としています。
+> + データ量が増えるとデータ更新やレポート画面の描写に時間がかかります。また、性能上限に達した場合はエラーとなります。
 
-5. 変更後のパラメータでデータを取得する場合は、上述の「利用開始手順 5. データ取得の動作確認」を実施してください。
+<details>
+<summary>　クリックして詳細表示</summary>
+
+> 1. Power BI サービスの左側メニューから [マイワークスペース] を選択します。
+> 
+> |<img src="images/Configure_Parameters.jpg" width="600">|
+> |---------|
+> 
+> 2. セマンティックモデルの [・・・] > [設定] をクリックし、設定画面を開きます。
+> 
+> |<img src="images/Configure_Parameters_2.jpg" width="600">|
+> |---------|
+> 
+> 3. [パラメーター] セクションから SchoolYearRange を任意の値に変更します。  
+> 
+> |<img src="images/Configure_Parameters_3.jpg" width="600">|
+> |---------|
+> 
+> 4. 適用して設定を保存します。
+> 
+> |<img src="images/Configure_Parameters_4.jpg" width="600">|
+> |---------|
+> 
+> 5. 変更後のパラメータでデータを取得する場合は、上述の「利用開始手順 7. データ取得の動作確認」を実施してください。
+
+</details>
 
 ## 📚 関連情報
 
-本プロジェクトに関連するドキュメントはこちらです。
+本プロジェクトに関連するドキュメント
 
 - [Power BI Desktop と Power BI サービスの比較 - Power BI | Microsoft Learn](https://learn.microsoft.com/ja-jp/power-bi/fundamentals/service-service-vs-desktop)
 - [Power BI Desktop のインストールガイド（Power BI Desktop の取得 - Power BI | Microsoft Learn）](https://learn.microsoft.com/ja-jp/power-bi/fundamentals/desktop-get-the-desktop)
 
-ご覧いただき、ありがとうございます。GIGAスクール構想で導入した端末の利用状況把握に少しでもお役立ていただければ幸いです。
 
 [Back to top](#top)
-
-# 以下、削除予定＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
-3. [ファイル] > [オプションと設定] > [データソース設定] から、SharePoint Online サイトの認証情報を設定してください。
-
-   |<img src="https://github.com/user-attachments/assets/be1233cb-3e15-4e21-bd03-9ea185b25c3a" width="600">|
-   |---------|
-
-   |<img src="https://github.com/user-attachments/assets/32256b3d-37e3-4a86-ba23-a549ada29703" width="600">|
-   |---------|
-
-   |<img src="https://github.com/user-attachments/assets/debae3b3-f659-4fb7-893e-9c811bacc066" width="300">|
-   |---------|
-
-   |<img src="https://github.com/user-attachments/assets/3a3f2e7e-565b-428d-9a48-831fa429460c" width="600">|
-   |---------|
-
-4. [ホーム] > [更新]ボタンをクリックして最新データを取得します。  
