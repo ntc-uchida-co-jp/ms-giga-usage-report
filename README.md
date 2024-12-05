@@ -519,13 +519,12 @@ SharePoint Online サイトにMicrosoft 365 利用ログが出力されている
   
 ## 📚 参考情報
 
-本プロジェクトに関連するドキュメントはこちらです。
+本プロジェクトに関連するドキュメント
 - [GIGA スクール構想の実現 学習者用コンピュータ最低スペック基準の一部訂正について（依頼）](https://www.mext.go.jp/content/20240201-mxt_shuukyo01-000033777_01.pdf)
 - [Microsoft 365 レポートに実際のユーザー名ではなく匿名のユーザー名が表示される -Microsoft 365](https://learn.microsoft.com/ja-jp/microsoft-365/troubleshoot/miscellaneous/reports-show-anonymous-user-name#resolution)
 - [Git for Windows](https://gitforwindows.org/)
 - [GitHub Cli](https://cli.github.com/)
 - [Windows での Azure CLI のインストール](https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-windows?tabs=azure-cli)
 
-ご覧いただき、ありがとうございます。
 
 [Back to top](#top)
