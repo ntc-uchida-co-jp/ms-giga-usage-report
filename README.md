@@ -388,6 +388,9 @@ git clone https://github.com/{~}/ms-giga-usage-report.git
 `exec.bat`ファイルは、`ms-giga-usage-report/src/000_setup/exec.bat`に存在します。  
 ※実行に失敗した場合は、`params.json`の内容を確認し`exec.bat`を再実行します。  
 
+> [!NOTE]
+> + PCの言語設定が"日本語"でない場合、エラーが起きる場合があります。
+
 <details>
 <summary>クリックして手順を表示　</summary>
 
