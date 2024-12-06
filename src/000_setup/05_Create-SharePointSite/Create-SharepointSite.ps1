@@ -1,16 +1,16 @@
 <#
     .SYNOPSIS
-        SharePoint„Çµ„Ç§„Éà„ÅÆ‰ΩúÊàê
+        SharePointÉTÉCÉgÇÃçÏê¨
 
     .DESCRIPTION
-        M365„ÉÜ„Éä„É≥„Éà„Éá„Éº„Çø„ÇíËìÑÁ©ç„Åô„Çã„Åü„ÇÅ„ÅÆSharePoint„Çµ„Ç§„Éà„ÅÆ‰ΩúÊàê
-        Âèä„Å≥„ÄÅEntra ID „Ç¢„Éó„É™„Ç±„Éº„Ç∑„Éß„É≥„Å∏„ÅÆÊ®©Èôê‰ªò‰∏é
+        M365ÉeÉiÉìÉgÉfÅ[É^Çí~êœÇ∑ÇÈÇΩÇﬂÇÃSharePointÉTÉCÉgÇÃçÏê¨
+        ãyÇ—ÅAEntra ID ÉAÉvÉäÉPÅ[ÉVÉáÉìÇ÷ÇÃå†å¿ïtó^
 
     .PARAMETER applicationId
-        [ÂøÖÈ†à] Entra ID „Ç¢„Éó„É™„Ç±„Éº„Ç∑„Éß„É≥ID
+        [ïKê{] Entra ID ÉAÉvÉäÉPÅ[ÉVÉáÉìID
 
     .PARAMETER securityGroupObjectId
-        [ÂøÖÈ†à] SharePoint„Çµ„Ç§„Éà„Å´ÂØæ„Åó„Å¶„Ç¢„ÇØ„Çª„ÇπÊ®©„Çí‰ªò‰∏é„Åô„Çã„Åü„ÇÅ„ÅÆEntra ID „Çª„Ç≠„É•„É™„ÉÜ„Ç£„Ç∞„É´„Éº„Éó„ÅÆObject ID
+        [ïKê{] SharePointÉTÉCÉgÇ…ëŒÇµÇƒÉAÉNÉZÉXå†Çïtó^Ç∑ÇÈÇΩÇﬂÇÃEntra ID ÉZÉLÉÖÉäÉeÉBÉOÉãÅ[ÉvÇÃObject ID
 
     .EXAMPLE
         PS> Create-SharepointSite.ps1 -applicationId "your-application-id" -securityGroupObjectId "your-security-group-object-id"
@@ -130,7 +130,7 @@ try {
     $group = Get-SPOSiteGroup -Site $siteUrl | Where-Object { $_.Title -eq $groupName }
 
     if ($null -eq $group) {
-    New-SPOSiteGroup -Site $siteUrl -Group $groupName -PermissionLevels "Full Control"
+    New-SPOSiteGroup -Site $siteUrl -Group $groupName -PermissionLevels "ÉtÉã ÉRÉìÉgÉçÅ[Éã"
     }
 
     Add-SPOUser -Site $siteUrl -LoginName $securityGroupLoginName -Group $groupName
